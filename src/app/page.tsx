@@ -1,21 +1,49 @@
 import { NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { RSS_URL } from "src/constants";
 
 const Home: NextPage = () => {
   return (
-    <main className="min-h-screen flex-col justify-between p-24 flex  items-center ">
-      <Link data-testid="logo-link" href={RSS_URL} target="_blank">
-        <Image
-          className=""
-          src="/rss-logo.svg"
-          alt="RSS Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </Link>
+    <main
+      className="flex flex-col grow justify-center items-center p-8"
+      data-testid="root-main"
+    >
+      <div className="w-full bg-white p-8">
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          User is not signed in:
+        </h2>
+        <ul className="flex justify-center space-x-6 mb-6">
+          <li>
+            <Link href="/sign-in" className="block border p-3">
+              Sign In
+            </Link>
+          </li>
+          <li>
+            <Link href="/sign-out" className="block border p-3">
+              Sign Out
+            </Link>
+          </li>
+        </ul>
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          User is signed in: Welcome Back, Username!
+        </h2>
+        <ul className="flex justify-center space-x-6 mb-6">
+          <li>
+            <Link href="/rest-client" className="block border p-3">
+              REST Client
+            </Link>
+          </li>
+          <li>
+            <Link href="/graphiql-client" className="block border p-3">
+              GraphiQL Client
+            </Link>
+          </li>
+          <li>
+            <Link href="/history" className="block border p-3">
+              History
+            </Link>
+          </li>
+        </ul>
+      </div>
     </main>
   );
 };
