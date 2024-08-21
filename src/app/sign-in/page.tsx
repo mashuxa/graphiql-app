@@ -3,7 +3,7 @@ import { NextPage } from "next";
 const SignIn: NextPage = () => {
   return (
     <main
-      className="flex flex-col grow justify-center items-center"
+      className="flex flex-col grow justify-center items-center text-black"
       data-testid="sign-in-main"
     >
       <div className="bg-white p-8">

@@ -3,7 +3,7 @@ import { NextPage } from "next";
 const RestClient: NextPage = () => {
   return (
     <main
-      className="flex flex-col grow justify-center items-center p-8"
+      className="flex flex-col grow justify-center items-center text-black"
       data-testid="rest-main"
     >
       Rest Client

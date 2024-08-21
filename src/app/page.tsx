@@ -4,7 +4,7 @@ import Link from "next/link";
 const Home: NextPage = () => {
   return (
     <main
-      className="flex flex-col grow justify-center items-center p-8"
+      className="flex flex-col grow justify-center items-center text-black"
       data-testid="root-main"
     >
       <div className="w-full bg-white p-8">

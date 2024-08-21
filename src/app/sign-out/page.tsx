@@ -3,7 +3,7 @@ import { NextPage } from "next";
 const SignOut: NextPage = () => {
   return (
     <main
-      className="flex flex-col grow justify-center items-center"
+      className="flex flex-col grow justify-center items-center text-black"
       data-testid="sign-out-main"
     >
       <div className="bg-white p-8">

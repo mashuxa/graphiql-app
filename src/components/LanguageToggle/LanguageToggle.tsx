@@ -7,7 +7,11 @@ const toggleLanguage = (): void => {
 };
 
 const LanguageToggle: FC = () => {
-  return <button onClick={toggleLanguage}>EN/RU</button>;
+  return (
+    <button className="p-3" onClick={toggleLanguage}>
+      EN/RU
+    </button>
+  );
 };
 
 export default LanguageToggle;

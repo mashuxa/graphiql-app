@@ -1,49 +1,48 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-
-import "./Footer.scss";
+import { RSS_REACT_GITHUB_URL, TEAM_DATA } from "src/constants";
 
 const footer: FC = () => {
   return (
-    <footer data-testid="footer" className="footer">
-      <ul className="footer__list">
+    <footer data-testid="footer">
+      <ul className="flex gap-2 justify-center items-center py-2 text-white bg-cyan-700">
         <li className="footer__item">
-          <Link href="https://github.com/mashuxa" target="_blank">
+          <Link href={TEAM_DATA.MASHUXA.GITHUB} target="_blank">
             <Image
-              className="git-icon"
-              src="https://avatars.githubusercontent.com/u/20760363?v=4"
+              className="rounded-full"
+              src={TEAM_DATA.MASHUXA.AVATAR}
               width={48}
               height={48}
-              alt="mashuxa"
+              alt={TEAM_DATA.MASHUXA.NAME}
             />
           </Link>
         </li>
-        <li className="footer__item">
-          <Link href="https://github.com/dimabaril" target="_blank">
-            <Image
-              className="git-icon"
-              src="https://avatars.githubusercontent.com/u/104690609?v=4"
-              width={48}
-              height={48}
-              alt="dimabaril"
-            />
-          </Link>
-        </li>
-        <li className="footer__item">
-          <Link href="https://github.com/mashuxa" target="_blank">
-            <Image
-              className="git-icon"
-              src="https://avatars.githubusercontent.com/u/20760363?v=4"
-              width={48}
-              height={48}
-              alt="mashuxa"
-            />
-          </Link>
-        </li>
-        <li className="footer__item">2024</li>
         <li>
-          <Link href="https://rs.school/courses/reactjs" target="_blank">
+          <Link href={TEAM_DATA.DIMABARIL.GITHUB} target="_blank">
+            <Image
+              className="rounded-full"
+              src={TEAM_DATA.DIMABARIL.AVATAR}
+              width={48}
+              height={48}
+              alt={TEAM_DATA.DIMABARIL.NAME}
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href={TEAM_DATA.ALEXANDER.GITHUB} target="_blank">
+            <Image
+              className="rounded-full"
+              src={TEAM_DATA.ALEXANDER.AVATAR}
+              width={48}
+              height={48}
+              alt={TEAM_DATA.ALEXANDER.NAME}
+            />
+          </Link>
+        </li>
+        <li>2024</li>
+        <li>
+          <Link href={RSS_REACT_GITHUB_URL} target="_blank">
             <Image src="/rss-logo.svg" width={48} height={48} alt="RSS Logo" />
           </Link>
         </li>
