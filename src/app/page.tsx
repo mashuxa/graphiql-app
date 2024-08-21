@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import Link from "next/link";
 
+import { routes } from "../constants";
+
 const Home: NextPage = () => {
   return (
     <main
@@ -13,12 +15,12 @@ const Home: NextPage = () => {
         </h2>
         <ul className="flex justify-center space-x-6 mb-6">
           <li>
-            <Link href="/sign-in" className="block border p-3">
+            <Link href={routes.signIn} className="block border p-3">
               Sign In
             </Link>
           </li>
           <li>
-            <Link href="/sign-out" className="block border p-3">
+            <Link href={routes.signOut} className="block border p-3">
               Sign Out
             </Link>
           </li>
@@ -28,17 +30,17 @@ const Home: NextPage = () => {
         </h2>
         <ul className="flex justify-center space-x-6 mb-6">
           <li>
-            <Link href="/rest-client" className="block border p-3">
+            <Link href={routes.restClient} className="block border p-3">
               REST Client
             </Link>
           </li>
           <li>
-            <Link href="/graphiql-client" className="block border p-3">
+            <Link href={routes.graphiqlClient} className="block border p-3">
               GraphiQL Client
             </Link>
           </li>
           <li>
-            <Link href="/history" className="block border p-3">
+            <Link href={routes.history} className="block border p-3">
               History
             </Link>
           </li>

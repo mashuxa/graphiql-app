@@ -1,42 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { RSS_REACT_GITHUB_URL, TEAM_DATA } from "src/constants";
+
+import { RSS_REACT_GITHUB_URL, teamData } from "src/constants";
 
 const footer: FC = () => {
   return (
     <footer data-testid="footer">
       <ul className="flex gap-2 justify-center items-center py-2 text-white bg-cyan-700">
         <li className="footer__item">
-          <Link href={TEAM_DATA.MASHUXA.GITHUB} target="_blank">
+          <Link href={teamData.mashuxa.github} target="_blank">
             <Image
               className="rounded-full"
-              src={TEAM_DATA.MASHUXA.AVATAR}
+              src={teamData.mashuxa.avatar}
               width={48}
               height={48}
-              alt={TEAM_DATA.MASHUXA.NAME}
+              alt={teamData.mashuxa.name}
             />
           </Link>
         </li>
         <li>
-          <Link href={TEAM_DATA.DIMABARIL.GITHUB} target="_blank">
+          <Link href={teamData.dimabaril.github} target="_blank">
             <Image
               className="rounded-full"
-              src={TEAM_DATA.DIMABARIL.AVATAR}
+              src={teamData.dimabaril.avatar}
               width={48}
               height={48}
-              alt={TEAM_DATA.DIMABARIL.NAME}
+              alt={teamData.dimabaril.name}
             />
           </Link>
         </li>
         <li>
-          <Link href={TEAM_DATA.ALEXANDER.GITHUB} target="_blank">
+          <Link href={teamData.alexander.github} target="_blank">
             <Image
               className="rounded-full"
-              src={TEAM_DATA.ALEXANDER.AVATAR}
+              src={teamData.alexander.avatar}
               width={48}
               height={48}
-              alt={TEAM_DATA.ALEXANDER.NAME}
+              alt={teamData.alexander.name}
             />
           </Link>
         </li>
