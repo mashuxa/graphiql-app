@@ -13,8 +13,8 @@ export const TEAM_DATA = {
   },
   ALEXANDER: {
     NAME: "Alexander",
-    GITHUB: "https://github.com/alexander",
-    AVATAR: "https://avatars.githubusercontent.com/u/6165?v=4",
+    GITHUB: "https://github.com/naumalex",
+    AVATAR: "https://avatars.githubusercontent.com/u/105120798?v=4",
   },
 };
 
