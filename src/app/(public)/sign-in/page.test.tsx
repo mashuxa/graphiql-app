@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import SignIn from "./page";
+import SignIn from "src/app/(public)/sign-in/page";
 
 describe("RestC lient", () => {
   test("should render page", () => {
