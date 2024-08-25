@@ -1,30 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-
-import { routes } from "../../constants";
-import LanguageToggle from "../LanguageToggle/LanguageToggle";
+import AuthButton from "src/components/Header/AuthButton/AuthButton";
+import LanguageToggle from "src/components/LanguageToggle/LanguageToggle";
+import { routes } from "src/constants";
 
 const Header: FC = () => {
-  // TODO: on auth show Sign Out, on unauth show Sign In
   return (
-    <header data-testid="header" className="sticky top-0">
-      <ul className="flex justify-center items-center py-2 text-white bg-cyan-700">
-        <li>
+    <header data-testid="header" className="sticky top-0 bg-neutral-800">
+      <ul className="flex items-center px-2 py-4 text-white">
+        <li className="mr-auto">
           <Link href={routes.home}>
             <Image src="/rss-logo.svg" width={48} height={48} alt="RSS Logo" />
           </Link>
         </li>
         <LanguageToggle />
-        <li>
-          <Link className="p-3" href={routes.signIn}>
-            Sign In
-          </Link>
-        </li>
-        <li>
-          <Link className="p-3" href={routes.signOut}>
-            Sign Out
-          </Link>
+        <li className="min-w-24 text-right">
+          <AuthButton />
         </li>
       </ul>
     </header>

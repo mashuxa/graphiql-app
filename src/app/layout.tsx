@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { FC, ReactNode } from "react";
 import Footer from "src/components/Footer/Footer";
 import Header from "src/components/Header/Header";
+import AuthProvider from "src/providers/AuthProvider/AuthProvider";
 import "./globals.css";
 
 interface RootLayoutProps {
@@ -18,13 +19,17 @@ export const metadata: Metadata = {
 
 const RootLayout: FC<Readonly<RootLayoutProps>> = ({ children }) => {
   return (
-    <html lang="en">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className={`${inter.className} flex flex-col min-h-screen`}>
+          <Header />
+          <main className="flex flex-col grow justify-center items-center text-neutral-700">
+            {children}
+          </main>
+          <Footer />
+        </body>
+      </html>
+    </AuthProvider>
   );
 };
 
