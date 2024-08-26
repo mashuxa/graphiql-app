@@ -1,0 +1,6 @@
+{
+  "Greeting": {
+    "auth-greeting": "С возвращением, {username}!",
+    "unauth-greeting": "Добро пожаловать!"
+  }
+}

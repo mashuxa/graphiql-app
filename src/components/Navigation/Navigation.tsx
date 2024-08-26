@@ -1,4 +1,5 @@
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "../../../i18n.config";
 
 import { FC } from "react";
 

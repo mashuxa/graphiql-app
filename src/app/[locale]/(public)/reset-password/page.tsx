@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+// import Link from "next/link";
 import { FC, FormEvent } from "react";
 import Button from "src/components/Button/Button";
 import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
 import { resetPassword } from "src/firebase/auth/auth";
+import { Link } from "../../../../../i18n.config";
 
 // @todo: add validation
 const ResetPassword: FC = () => {

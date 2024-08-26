@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import { FC } from "react";
+import { Link } from "../../../i18n.config";
 
 import {
   PROJECT_GITHUB_URL,

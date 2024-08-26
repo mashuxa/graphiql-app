@@ -1,12 +1,13 @@
 "use client";
 
 import { NextPage } from "next";
-import Link from "next/link";
+// import Link from "next/link";
 import { FormEvent } from "react";
 import Button from "src/components/Button/Button";
 import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
 import { signUp } from "src/firebase/auth/auth";
+import { Link } from "../../../../../i18n.config";
 
 // @todo: add validation
 const SignUp: NextPage = () => {

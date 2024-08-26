@@ -1,0 +1,6 @@
+{
+  "Greeting": {
+    "auth-greeting": "Welcome Back, {username}!",
+    "unauth-greeting": "Welcome!"
+  }
+}

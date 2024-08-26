@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+// import Link from "next/link";
 import { FC, useContext } from "react";
 import Preloader from "src/components/Preloader/Preloader";
 import { routes } from "src/constants";
 import { signOut } from "src/firebase/auth/auth";
 import { AuthContext } from "src/providers/AuthProvider/AuthProvider";
+import { Link } from "../../../../i18n.config";
 
 const AuthButton: FC = () => {
   const { user, loading } = useContext(AuthContext);
