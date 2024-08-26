@@ -7,7 +7,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, fetchUserData } from "src/firebase/auth/auth";
 import { User } from "src/types";
 
@@ -26,31 +25,30 @@ export const AuthContext = createContext<AuthContext>(DEFAULT_CONTEXT);
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [firebaseUserData, firebaseLoading] = useAuthState(auth);
+  const [loading, setLoading] = useState(true);
 
-  const getUserData = async (uid: string): Promise<void> => {
-    setLoading(true);
+  const getUserData = async (uid?: string): Promise<void> => {
+    if (uid) {
+      const data = await fetchUserData(uid);
 
-    const data = await fetchUserData(uid);
-
-    if (data) {
-      setUser(data);
+      if (data) {
+        setUser(data);
+      }
+    } else {
+      setUser(null);
     }
 
     setLoading(false);
   };
 
   useEffect(() => {
-    if (firebaseUserData) {
-      void getUserData(firebaseUserData.uid);
-    } else {
-      setUser(null);
-    }
-  }, [firebaseUserData]);
+    return auth.onAuthStateChanged((user) => {
+      void getUserData(user?.uid);
+    });
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading: firebaseLoading || loading }}>
+    <AuthContext.Provider value={{ user, loading }}>
       {children}
     </AuthContext.Provider>
   );
