@@ -1,7 +1,11 @@
 import { NextPage } from "next";
 
+import { useTranslations } from "next-intl";
+
 const RestClient: NextPage = () => {
-  return <div data-testid="rest-main">Rest Client</div>;
+  const t = useTranslations("RestClient");
+
+  return <div data-testid="rest-main">{t("placeholder")}</div>;
 };
 
 export default RestClient;

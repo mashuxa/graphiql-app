@@ -7,20 +7,20 @@ import { AuthContext } from "src/providers/AuthProvider/AuthProvider";
 
 import { useTranslations } from "next-intl";
 
-const authLinks = [
-  { href: routes.signIn, title: "Sign In" },
-  { href: routes.signUp, title: "Sign Up" },
-];
-const navLinks = [
-  { href: routes.restClient, title: "REST Client" },
-  { href: routes.graphiqlClient, title: "GraphiQL Client" },
-  { href: routes.history, title: "History" },
-];
-
 const Greeting: FC = () => {
   const { user } = useContext(AuthContext);
 
   const t = useTranslations("Greeting");
+
+  const authLinks = [
+    { href: routes.signIn, title: t("signIn") },
+    { href: routes.signUp, title: t("signUp") },
+  ];
+  const navLinks = [
+    { href: routes.restClient, title: t("restClient") },
+    { href: routes.graphiqlClient, title: t("graphiqlClient") },
+    { href: routes.history, title: t("history") },
+  ];
 
   return (
     <>

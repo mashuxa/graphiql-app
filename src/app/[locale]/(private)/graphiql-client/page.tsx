@@ -1,7 +1,10 @@
 import { NextPage } from "next";
+import { useTranslations } from "next-intl";
 
-const Graphiql: NextPage = () => {
-  return <div data-testid="graph-main">GraphiQL Client</div>;
+const GraphiQL: NextPage = () => {
+  const t = useTranslations("GraphiQL");
+
+  return <div data-testid="graph-main">{t("placeholder")}</div>;
 };
 
-export default Graphiql;
+export default GraphiQL;

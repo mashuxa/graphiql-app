@@ -10,8 +10,12 @@ import { signIn } from "src/firebase/auth/auth";
 
 import { Link } from "../../../../../i18n.config";
 
+import { useTranslations } from "next-intl";
+
 // @todo: add validation
 const SignIn: NextPage = () => {
+  const t = useTranslations("SignIn");
+
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
@@ -28,20 +32,20 @@ const SignIn: NextPage = () => {
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6 text-center">Sign In</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">{t("title")}</h1>
       <form
         data-testid="sign-in-main"
         className="space-y-4"
         onSubmit={handleSubmit}
       >
-        <FormField label="Email" name="email" type="email" />
-        <FormField label="Password" name="password" type="password" />
-        <Button>Submit</Button>
+        <FormField label={t("email")} name="email" type="email" />
+        <FormField label={t("password")} name="password" type="password" />
+        <Button>{t("submit")}</Button>
       </form>
       <div className="pt-8 text-center">
-        <Link href={routes.reset}>Forgot Password</Link>
+        <Link href={routes.reset}>{t("resetPassword")}</Link>
         <span> | </span>
-        <Link href={routes.signUp}>Sign Up</Link>
+        <Link href={routes.signUp}>{t("signUp")}</Link>
       </div>
     </>
   );

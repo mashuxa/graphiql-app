@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import RestClient from "src/app/(private)/rest-client/page";
+import RestClient from "src/app/[locale]/(private)/rest-client/page";
 
-describe("RestC lient", () => {
+describe("Rest Client", () => {
   test("should render page", () => {
     render(<RestClient />);
 

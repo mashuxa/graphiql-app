@@ -8,9 +8,13 @@ import {
   type Locale,
 } from "../../../i18n.config";
 
+import { useTranslations } from "next-intl";
+
 const LocaleSwitcher = ({ locale }: { locale: Locale }): JSX.Element => {
   const pathname = usePathname();
   const router = useRouter();
+
+  const t = useTranslations("LocaleSwitcher");
 
   const changeLocale = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const newLocale = event.target.value as Locale;
@@ -23,7 +27,8 @@ const LocaleSwitcher = ({ locale }: { locale: Locale }): JSX.Element => {
       <select value={locale} onChange={changeLocale} className="bg-inherit">
         {locales.map((locale) => (
           <option key={locale} value={locale}>
-            {localeNames[locale]}
+            {/* {localeNames[locale]} */}
+            {t(localeNames[locale])}
           </option>
         ))}
       </select>
