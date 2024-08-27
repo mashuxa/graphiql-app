@@ -46,7 +46,6 @@ const NewListItem = <T,>({
         >
           {itemRender({ itemData: values })}
         </li>
-        <button type="submit">Add</button>
       </form>
     </>
   );

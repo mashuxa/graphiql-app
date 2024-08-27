@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import { Header } from "src/types";
-import HeadersListItem from "../HeadersListItem/HeadersListItem";
+import BaseHeadersListItem from "../BaseHeadersListItem/BaseHeadersListItem";
 
 export interface NewHeadersListItemProps {
   itemData: Header;
@@ -12,7 +12,7 @@ const NewHeadersListItem: FC<NewHeadersListItemProps> = ({
 }: NewHeadersListItemProps) => {
   return (
     <>
-      <HeadersListItem itemData={itemData} />
+      <BaseHeadersListItem itemData={itemData} />
       <button>
         <Image src="/add.png" alt="New list item icon" width={24} height={24} />
       </button>

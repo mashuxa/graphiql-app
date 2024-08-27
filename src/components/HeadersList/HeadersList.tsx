@@ -1,6 +1,7 @@
 import { FC, LiHTMLAttributes } from "react";
 import { Header } from "src/types";
 import List from "../List/List";
+
 import HeadersListItem from "./HeadersListItem/HeadersListItem";
 import NewHeadersListItem from "./NewHeadersListItem/NewHeadersListItem";
 

@@ -1,6 +1,7 @@
+import Image from "next/image";
 import { FC } from "react";
-import FormField from "src/components/FormField/FormField";
 import { Header } from "src/types";
+import BaseHeadersListItem from "../BaseHeadersListItem/BaseHeadersListItem";
 
 export interface HeadersListItemProps {
   itemData: Header;
@@ -11,16 +12,10 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
 }: HeadersListItemProps) => {
   return (
     <>
-      <div className="cell">
-        <FormField name="key" value={itemData?.key || ""} onChange={() => {}} />
-      </div>
-      <div className="cell">
-        <FormField
-          name="value"
-          value={itemData?.value || ""}
-          onChange={() => {}}
-        />
-      </div>
+       <BaseHeadersListItem itemData={itemData} />
+      <button>
+        <Image src="/delete.png" alt="New list item icon" width={24} height={24} />
+      </button>
     </>
   );
 };
