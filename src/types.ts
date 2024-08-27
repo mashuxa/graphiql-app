@@ -8,3 +8,11 @@ export interface User {
   email: string;
   authProvider: AuthProvider;
 }
+
+export type ChangeEventHandler<T> = (event: React.ChangeEvent<T>) => void;
+
+export interface Header {
+  key: string;
+  value: string;
+  id: string;
+}
