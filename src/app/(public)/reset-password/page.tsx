@@ -31,7 +31,7 @@ const ResetPassword: FC = () => {
         onSubmit={handleSubmit}
       >
         <FormField label="Email" name="email" type="email" />
-        <Button>Submit</Button>
+        <Button className="mx-auto">Submit</Button>
       </form>
       <div className="pt-8 text-center">
         <Link href={routes.signIn}>Sign In</Link>

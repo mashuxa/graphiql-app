@@ -34,7 +34,7 @@ const SignIn: NextPage = () => {
       >
         <FormField label="Email" name="email" type="email" />
         <FormField label="Password" name="password" type="password" />
-        <Button>Submit</Button>
+        <Button className="mx-auto">Submit</Button>
       </form>
       <div className="pt-8 text-center">
         <Link href={routes.reset}>Forgot Password</Link>

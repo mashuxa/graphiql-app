@@ -17,15 +17,15 @@ const withErrorHandling: WithErrorHandlingType =
       const isFirebaseError = error instanceof FirebaseError;
 
       if (isFirebaseError && codes.includes(error.code as FirebaseErrorCodes)) {
-        alert(errorMessages[error.code as FirebaseErrorCodes]);
+        // alert(errorMessages[error.code as FirebaseErrorCodes]);
 
         console.error(errorMessages[error.code as FirebaseErrorCodes]);
       } else if (isFirebaseError) {
-        alert(error.code);
+        //  alert(error.code);
 
         console.error(`Unknown Firebase error occurred: ${error.code}`);
       } else {
-        alert(error);
+        //  alert(error);
 
         console.error("Unknown error occurred:", error);
       }
