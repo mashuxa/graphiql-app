@@ -10,7 +10,7 @@ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   return (
     <button
       {...props}
-      className={`${className} w-full p-2 border transition hover:border-primary hover:text-primary`}
+      className={`${className} block p-2 border transition hover:border-primary hover:text-primary`}
     >
       {children}
     </button>
