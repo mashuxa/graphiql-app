@@ -1,13 +1,11 @@
 // import { render, screen } from "@testing-library/react";
-import { act, render, screen } from "../../../test/test-utils";
+import { render, screen } from "../../../test/test-utils";
 
 import Footer from "./Footer";
 
 describe("Footer Component", () => {
   test("should render footer with correct text", async () => {
-    await act(async () => {
-      render(<Footer />);
-    });
+    render(<Footer />);
 
     const footerElement = screen.getByTestId("footer");
 
