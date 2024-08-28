@@ -1,6 +1,5 @@
 "use client";
 
-// import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { FC, useContext } from "react";
 import Preloader from "src/components/Preloader/Preloader";

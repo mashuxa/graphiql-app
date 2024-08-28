@@ -1,12 +1,10 @@
 import { Locale } from "i18n.config";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-// import Link from "next/link";
 import { FC } from "react";
 import AuthButton from "src/components/Header/AuthButton/AuthButton";
 import LanguageToggle from "src/components/LanguageToggle/LanguageToggle";
 import { routes } from "src/constants";
-
 import { Link } from "../../../i18n.config";
 
 const Header: FC = () => {

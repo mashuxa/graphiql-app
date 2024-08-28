@@ -1,6 +1,4 @@
-// import { render, screen } from "@testing-library/react";
 import { render, screen } from "../../../test/test-utils";
-
 import Footer from "./Footer";
 
 describe("Footer Component", () => {

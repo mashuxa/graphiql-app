@@ -1,7 +1,6 @@
 "use client";
 
 import { NextPage } from "next";
-// import Link from "next/link";
 import { FormEvent } from "react";
 import Button from "src/components/Button/Button";
 import FormField from "src/components/FormField/FormField";
