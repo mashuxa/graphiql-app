@@ -13,7 +13,7 @@ const NewHeadersListItem: FC<NewHeadersListItemProps> = ({
   return (
     <>
       <BaseHeadersListItem itemData={itemData} />
-      <button>
+      <button className="ml-2">
         <Image src="/add.png" alt="New list item icon" width={24} height={24} />
       </button>
     </>

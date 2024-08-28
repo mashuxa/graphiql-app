@@ -12,7 +12,7 @@ const ListItems = <T extends { key: string; id: string }>({
   updateData,
   ...rest
 }: ListItemsProps<T>): React.ReactNode => {
-  const liClassName = "flex gap-2 justify-between";
+  const liClassName = "flex";
 
   const handleChange = (e: ChangeEvent<HTMLLIElement>): void => {
     if (e.target instanceof HTMLInputElement) {

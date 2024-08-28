@@ -9,12 +9,14 @@ export interface HeadersListItemProps {
 const BaseHeadersListItem: FC<HeadersListItemProps> = ({
   itemData,
 }: HeadersListItemProps) => {
+  const cellClass = "-mt-px mr-0 mb-0 -ml-px border-0 -outline-offset-2";
+
   return (
     <>
-      <div className="cell">
+      <div className={cellClass}>
         <FormField name="key" value={itemData?.key || ""} onChange={() => {}} />
       </div>
-      <div className="cell">
+      <div className={cellClass}>
         <FormField
           name="value"
           value={itemData?.value || ""}

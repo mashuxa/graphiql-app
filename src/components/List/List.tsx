@@ -22,14 +22,20 @@ const List = <T extends { key: string; id: string }>({
   newItemDefaults,
   ...rest
 }: ListProps<T>): React.ReactNode => {
-  const liClassName = "flex gap-2 justify-between";
+  const liClassName = "flex";
+  const cellClass = "-mt-px mr-0 mb-0 -ml-px border text-center align-middle";
 
   return (
     <div className="w-full">
       <ul className="w-full">
-        {listHeader ? <h3>{listHeader}</h3> : null}
-        <li className={liClassName} {...rest}>
-          {columnHeaders?.map((header) => <div key={header}>{header}</div>)}
+        {listHeader ? <h3 className="font-semibold">{listHeader}</h3> : null}
+        <li className={`${liClassName} h-10 leading-10`} {...rest}>
+          {columnHeaders?.map((header) => (
+            <div key={header} className={`cell ${cellClass} w-full`}>
+              {header}
+            </div>
+          ))}
+          <div className="min-w-6 ml-2"></div>
         </li>
         <ListItems
           data={data}

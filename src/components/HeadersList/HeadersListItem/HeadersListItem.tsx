@@ -12,9 +12,14 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
 }: HeadersListItemProps) => {
   return (
     <>
-       <BaseHeadersListItem itemData={itemData} />
-      <button>
-        <Image src="/delete.png" alt="New list item icon" width={24} height={24} />
+      <BaseHeadersListItem itemData={itemData} />
+      <button className="ml-2">
+        <Image
+          src="/delete.png"
+          alt="New list item icon"
+          width={24}
+          height={24}
+        />
       </button>
     </>
   );

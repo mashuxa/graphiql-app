@@ -7,7 +7,13 @@ interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const FormField: FC<FormFieldProps> = ({ label, ...props }) => {
-  const input = <input {...props} className="w-full p-2 border" required />;
+  const input = (
+    <input
+      {...props}
+      className="input w-full p-2 border -outline-offset-2"
+      required
+    />
+  );
 
   return label ? <label>{input}</label> : input;
 };
