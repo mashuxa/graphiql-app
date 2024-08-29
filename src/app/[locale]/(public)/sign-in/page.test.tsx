@@ -1,4 +1,4 @@
-import { render, screen } from "../../../../../test/test-utils";
+import { render, screen } from "src/test/test-utils";
 
 import SignIn from "src/app/[locale]/(public)/sign-in/page";
 

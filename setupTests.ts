@@ -11,8 +11,8 @@ jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
 }));
 
-jest.mock("./i18n.config", () => ({
-  ...jest.requireActual("./i18n.config"),
+jest.mock("src/i18n.config", () => ({
+  ...jest.requireActual("src/i18n.config"),
   Link: jest.fn(),
   usePathname: jest.fn(),
   useRouter: jest.fn(),

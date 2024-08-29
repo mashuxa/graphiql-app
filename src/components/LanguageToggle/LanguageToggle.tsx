@@ -1,16 +1,14 @@
 "use client";
 
-import {
-  localeNames,
-  locales,
-  usePathname,
-  useRouter,
-  type Locale,
-} from "../../../i18n.config";
+import { locales, usePathname, useRouter, type Locale } from "src/i18n.config";
 
 import { useTranslations } from "next-intl";
 
-const LocaleSwitcher = ({ locale }: { locale: Locale }): JSX.Element => {
+interface LocaleSwitcherProps {
+  locale: Locale;
+}
+
+const LocaleSwitcher = ({ locale }: LocaleSwitcherProps): JSX.Element => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -32,8 +30,7 @@ const LocaleSwitcher = ({ locale }: { locale: Locale }): JSX.Element => {
       >
         {locales.map((locale) => (
           <option key={locale} value={locale}>
-            {/* {localeNames[locale]} */}
-            {t(localeNames[locale])}
+            {t(locale)}
           </option>
         ))}
       </select>

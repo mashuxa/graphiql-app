@@ -1,4 +1,4 @@
-import { render, screen } from "../../../../../test/test-utils";
+import { render, screen } from "src/test/test-utils";
 
 import GraphiqlClient from "src/app/[locale]/(private)/graphiql-client/page";
 

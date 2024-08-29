@@ -1,4 +1,4 @@
-import { render, screen } from "../../../../../test/test-utils";
+import { render, screen } from "src/test/test-utils";
 
 import RestClient from "src/app/[locale]/(private)/rest-client/page";
 

@@ -1,6 +1,6 @@
-import { Link } from "../../../i18n.config";
-
 import { FC } from "react";
+
+import { Link } from "src/i18n.config";
 
 interface NavigationLink {
   href: string;

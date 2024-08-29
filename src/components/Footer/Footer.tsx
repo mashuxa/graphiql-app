@@ -6,7 +6,7 @@ import {
   RSS_REACT_GITHUB_URL,
   teamData,
 } from "src/constants";
-import { Link } from "../../../i18n.config";
+import { Link } from "src/i18n.config";
 
 const footer: FC = () => {
   return (

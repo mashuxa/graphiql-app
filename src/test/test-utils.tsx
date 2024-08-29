@@ -1,11 +1,12 @@
 import { render, RenderResult } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
-import { ReactNode } from "react";
-import messageEn from "../src/messages/en.json";
+import { PropsWithChildren } from "react";
+import { Locale } from "src/i18n.config";
+import messageEn from "src/messages/en.json";
 
-const AllProviders = ({ children }: { children: ReactNode }): JSX.Element => {
+const AllProviders = ({ children }: PropsWithChildren): JSX.Element => {
   return (
-    <NextIntlClientProvider locale="en" messages={messageEn}>
+    <NextIntlClientProvider locale={Locale.EN} messages={messageEn}>
       {children}
     </NextIntlClientProvider>
   );

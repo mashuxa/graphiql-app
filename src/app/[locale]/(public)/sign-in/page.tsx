@@ -7,7 +7,7 @@ import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
 import { signIn } from "src/firebase/auth/auth";
 
-import { Link } from "../../../../../i18n.config";
+import { Link } from "src/i18n.config";
 
 import { useTranslations } from "next-intl";
 
