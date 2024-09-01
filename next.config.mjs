@@ -10,6 +10,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+        {
+            source: '/graphiql-client',
+            destination: `/graphiql-client/GRAPHIQL/${encodeURIComponent("https://countries.trevorblades.com_")}`,
+            permanent: false,
+        },
+    ];
+},
 };
 
 export default nextConfig;
