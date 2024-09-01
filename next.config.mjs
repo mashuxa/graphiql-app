@@ -14,7 +14,7 @@ const nextConfig = {
     return [
         {
             source: '/graphiql-client',
-            destination: `/graphiql-client/GRAPHIQL/${encodeURIComponent("https://countries.trevorblades.com_")}`,
+            destination: `/graphiql-client/GRAPHIQL/${encodeURIComponent("https://countries.trevorblades.com")}`,
             permanent: false,
         },
     ];
