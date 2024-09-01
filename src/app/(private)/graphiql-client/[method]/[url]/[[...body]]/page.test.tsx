@@ -1,10 +1,9 @@
 import { render, screen } from "@testing-library/react";
-
-import GraphiqlClient from "src/app/(private)/graphiql-client/page";
+import Graphiql from "./page";
 
 describe("Graphiql Client", () => {
   test("should render page", () => {
-    render(<GraphiqlClient />);
+    render(<Graphiql />);
 
     const logo = screen.getByTestId("graph-main");
 
