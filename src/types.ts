@@ -8,3 +8,16 @@ export interface User {
   email: string;
   authProvider: AuthProvider;
 }
+
+export enum HttpMethod {
+  get = "GET",
+  post = "POST",
+  put = "PUT",
+  delete = "DELETE",
+  patch = "PATCH",
+  options = "OPTIONS",
+  head = "HEAD",
+  connect = "CONNECT",
+  trace = "TRACE",
+  graphiql = "GRAPHIQL",
+}
