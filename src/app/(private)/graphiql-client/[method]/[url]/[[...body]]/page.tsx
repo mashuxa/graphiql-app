@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import BodyEditor from "src/components/BodyEditor/BodyEditor";
 import Button from "src/components/Button/Button";
 import HeadersList from "src/components/HeadersList/HeadersList";
 import SDLUrlInput from "src/components/SDLUrlInput/SDLUrlInput";
@@ -27,6 +28,8 @@ const Graphiql: NextPage = () => {
         </form>
         <SectionTitle>Headers:</SectionTitle>
         <HeadersList />
+        <SectionTitle>Body:</SectionTitle>
+        <BodyEditor readOnly={false} type="graphql" />
       </div>
     </div>
   );
