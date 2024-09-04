@@ -11,10 +11,10 @@ export const decodeFromBase64 = (base64 = ""): string => {
   return base64 ? atob(decodeURIComponent(base64)) : "";
 };
 
-export const getSearchParams = (newData: SearchParam[]): string => {
+export const makeSearchParams = (params: SearchParam[]): string => {
   const searchParams = new URLSearchParams();
 
-  newData.forEach(({ key, value }) => searchParams.set(key, value));
+  params.forEach(({ key, value }) => searchParams.set(key, value));
 
   return searchParams.toString();
 };

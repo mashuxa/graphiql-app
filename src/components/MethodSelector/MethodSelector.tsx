@@ -1,3 +1,5 @@
+"use client";
+
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { HttpMethod } from "src/types";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";

@@ -1,6 +1,10 @@
 import { Header } from "src/components/HeadersList/types";
 import { routes } from "src/constants";
-import { getSearchParams } from "src/utils/utils";
+import {
+  decodeFromBase64,
+  encodeToBase64,
+  makeSearchParams,
+} from "src/utils/utils";
 
 export enum ArgType {
   method,
@@ -15,15 +19,17 @@ export const newItem = (key = "", value = ""): Header => ({
 });
 
 export const updateUrlHeaders = (headers: Header[]): void => {
-  const params = getSearchParams(headers);
+  const params = makeSearchParams(headers);
 
-  window.history.pushState(null, "", `${window.location.pathname}?${params}`);
+  const newUrl = params
+    ? `${window.location.pathname}?${params}`
+    : window.location.pathname;
+
+  window.history.replaceState(null, "", newUrl);
 };
 
 export const getUrlParams = (): URLSearchParams => {
-  const url = new URL(window.location.href);
-
-  return new URLSearchParams(url.search);
+  return new URLSearchParams(window.location.search);
 };
 
 export const getUrlHeaders = (): Header[] => {
@@ -43,7 +49,7 @@ interface UrlData {
 export const getUrlData = (): UrlData => {
   const [, , method, url, body] = window.location.pathname.split("/");
 
-  return { method, url, body };
+  return { method, url: decodeFromBase64(url), body: decodeFromBase64(body) };
 };
 
 export const replaceUrlData = (type: ArgType, value: string): void => {
@@ -65,7 +71,7 @@ export const replaceUrlData = (type: ArgType, value: string): void => {
       break;
   }
 
-  const newUrl = `${[routes.restClient, method, url, body].join("/")}?${searchParams}`;
+  const newUrl = `${[routes.restClient, method, encodeToBase64(url), encodeToBase64(body)].join("/")}?${searchParams}`;
 
-  window.history.pushState(null, "", newUrl);
+  window.history.replaceState(null, "", newUrl);
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import beautify from "json-beautify";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import Switcher from "src/components/Switcher/Switcher";
@@ -76,6 +78,7 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
         />
         {contentType === ContentType.json && (
           <button
+            type="button"
             className="absolute right-0 top-0 p-2 bg-green-500 text-white rounded"
             onClick={beautifyJson}
           >
