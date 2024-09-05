@@ -16,7 +16,7 @@ const RestForm = (): JSX.Element => {
   const searchParams = useSearchParams();
 
   // TODO: add validation
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleClick = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const currentUrl = `${pathname}?${searchParams.toString()}`;
 
@@ -24,7 +24,7 @@ const RestForm = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleClick}>
       <div className="flex border">
         <MethodSelector />
         <UrlInput />
