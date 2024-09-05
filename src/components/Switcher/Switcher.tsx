@@ -23,7 +23,7 @@ const Switcher: FC<SwitcherProps> = ({
     onChange(event.currentTarget.value);
 
   return (
-    <div className="flex items-center">
+    <div className="flex py-1 items-center">
       <div className="relative inline-flex items-center w-28 bg-gray-300 rounded-full cursor-pointer">
         <input
           defaultChecked={options[0] === defaultValue}

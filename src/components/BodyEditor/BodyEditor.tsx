@@ -67,7 +67,7 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
   }, []);
 
   return (
-    <div className="w-full relative pt-4 pb-10">
+    <div className="w-full pt-4 pb-10">
       <div className="flex justify-between mb-2">
         <Switcher
           name="contentType"
@@ -79,7 +79,7 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
         {contentType === ContentType.json && (
           <button
             type="button"
-            className="absolute right-0 top-0 p-2 bg-green-500 text-white rounded"
+            className="p-2 bg-green-500 text-white rounded"
             onClick={beautifyJson}
           >
             Beautify JSON
