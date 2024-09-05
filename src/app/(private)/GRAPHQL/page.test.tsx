@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import GraphiqlClient from "src/app/(private)/graphiql-client/page";
+import GraphiqlClient from "src/app/(private)/GRAPHQL/page";
 
 describe("Graphiql Client", () => {
   test("should render page", () => {

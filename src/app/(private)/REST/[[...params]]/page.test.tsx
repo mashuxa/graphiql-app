@@ -1,9 +1,9 @@
 // import { render, screen } from "@testing-library/react";
-// import RestClient from "src/app/(private)/rest-client/[[...params]]/page";
+// import Rest from "src/app/(private)/rest-client/[[...params]]/page";
 
 describe("Rest Client", () => {
   test("should render page", () => {
-    // render(<RestClient />);
+    // render(<Rest />);
 
     // const logo = screen.getByTestId("rest-main");
 
