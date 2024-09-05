@@ -2,9 +2,9 @@
 
 import { NextPage } from "next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { fetchData } from "src/app/fetch/fetchData";
 import RestForm from "src/components/RestForm/RestForm";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
+import { fetchData } from "src/fetch/fetchRestData";
 
 const Rest: NextPage<{
   params: Params;
