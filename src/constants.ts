@@ -4,7 +4,7 @@ export const routes = {
   signUp: "/sign-up",
   signOut: "/sign-out",
   reset: "/reset-password",
-  restClient: "/GET",
+  restClient: "/REST",
   graphiqlClient: "/GRAPHQL",
   history: "/history",
 };

@@ -6,7 +6,7 @@ import { fetchData } from "src/app/fetch/fetchData";
 import RestForm from "src/components/RestForm/RestForm";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 
-const RestClient: NextPage<{
+const Rest: NextPage<{
   params: Params;
   searchParams: Record<string, string>;
 }> = async ({ params, searchParams }) => {
@@ -27,4 +27,4 @@ const RestClient: NextPage<{
   );
 };
 
-export default RestClient;
+export default Rest;
