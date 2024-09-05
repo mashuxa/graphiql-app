@@ -16,23 +16,20 @@ const methodsWithBody = [
   HttpMethod.delete,
 ];
 
-export const fetchRestData = async (
+export const fetchData = async (
   params: Params,
   searchParams: Record<string, string>,
 ): Promise<{
   status: number;
   data: string;
 }> => {
-  const method = params.method;
-  const urlBase64 = params.urlBody?.[0];
-  const bodyBase64 = params.urlBody?.[1];
+  const method = params.params?.[0] || "GET";
+  const url = decodeFromBase64(params.params?.[1]) || "";
+  const body = decodeFromBase64(params.params?.[2]) || "";
 
-  if (!method || !urlBase64) {
+  if (!url) {
     return { status: 0, data: "Here will be response data" };
   }
-
-  const url = decodeFromBase64(urlBase64);
-  const body = decodeFromBase64(bodyBase64);
 
   const headers: Record<string, string> = {};
 
