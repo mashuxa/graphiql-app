@@ -23,10 +23,11 @@ export const fetchData = async (
   status: number;
   data: string;
 }> => {
-  // const method = params.urlBody?.[0] || "GET";
-  const method = params.method || "GET";
-  const url = decodeFromBase64(params.urlBody?.[1]) || "";
-  const body = decodeFromBase64(params.urlBody?.[2]) || "";
+  const method = params.method;
+  const url = decodeFromBase64(params.urlBody?.[0]);
+  const body = decodeFromBase64(params.urlBody?.[1]) || "";
+
+  if (!method) throw new Error("Method is not defined");
 
   if (!url) {
     return { status: 0, data: "Here will be response data" };
