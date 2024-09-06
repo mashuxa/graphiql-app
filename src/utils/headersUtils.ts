@@ -1,16 +1,25 @@
 import { Header } from "src/components/HeadersList/types";
 import { routes } from "src/constants";
-import {
-  decodeFromBase64,
-  encodeToBase64,
-  makeSearchParams,
-} from "src/utils/utils";
+import { decodeFromBase64, encodeToBase64 } from "src/utils/utils";
 
 export enum ArgType {
   method,
   url,
   body,
 }
+
+export interface SearchParam {
+  key: string;
+  value: string;
+}
+
+export const makeSearchParams = (params: SearchParam[]): string => {
+  const searchParams = new URLSearchParams();
+
+  params.forEach(({ key, value }) => searchParams.set(key, value));
+
+  return searchParams.toString();
+};
 
 export const newItem = (key = "", value = ""): Header => ({
   key,
