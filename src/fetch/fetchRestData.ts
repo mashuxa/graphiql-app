@@ -16,7 +16,7 @@ const methodsWithBody = [
   HttpMethod.delete,
 ];
 
-export const fetchData = async (
+export const fetchRestData = async (
   params: Params,
   searchParams: Record<string, string>,
 ): Promise<{
@@ -24,14 +24,15 @@ export const fetchData = async (
   data: string;
 }> => {
   const method = params.method;
-  const url = decodeFromBase64(params.urlBody?.[0]);
-  const body = decodeFromBase64(params.urlBody?.[1]) || "";
+  const urlBase64 = params.urlBody?.[0];
+  const bodyBase64 = params.urlBody?.[1];
 
-  if (!method) throw new Error("Method is not defined");
-
-  if (!url) {
+  if (!method || !urlBase64) {
     return { status: 0, data: "Here will be response data" };
   }
+
+  const url = decodeFromBase64(urlBase64);
+  const body = decodeFromBase64(bodyBase64);
 
   const headers: Record<string, string> = {};
 

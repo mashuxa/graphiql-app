@@ -55,9 +55,13 @@ interface UrlData {
 }
 
 export const getUrlData = (): UrlData => {
-  const [, method, url, body] = window.location.pathname.split("/");
+  const [, method, urlBase64, bodyBase64] = window.location.pathname.split("/");
 
-  return { method, url: decodeFromBase64(url), body: decodeFromBase64(body) };
+  return {
+    method,
+    url: decodeFromBase64(urlBase64),
+    body: decodeFromBase64(bodyBase64),
+  };
 };
 
 export const replaceUrlData = (type: ArgType, value: string): void => {
