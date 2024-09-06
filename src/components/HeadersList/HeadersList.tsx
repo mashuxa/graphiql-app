@@ -5,7 +5,7 @@ import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
 import { Header } from "src/components/HeadersList/types";
 import {
-  getUrlHeaders,
+  getUrlHeadersFromSearchParams,
   newItem,
   updateUrlHeaders,
 } from "src/utils/headersUtils";
@@ -25,7 +25,7 @@ const HeadersList: FC = () => {
     );
 
   useEffect(() => {
-    const defaultHeaders = getUrlHeaders();
+    const defaultHeaders = getUrlHeadersFromSearchParams();
 
     if (defaultHeaders.length) {
       setHeaders(defaultHeaders);

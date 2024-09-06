@@ -5,8 +5,10 @@ import { HttpMethod } from "src/types";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 
 const methods = Object.values(HttpMethod);
+
 const MethodSelector: FC = () => {
   const [value, setValue] = useState("");
+
   const handleChange = ({
     currentTarget,
   }: ChangeEvent<HTMLSelectElement>): void => {
