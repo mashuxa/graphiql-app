@@ -25,6 +25,7 @@ const UrlInput: FC = () => {
   return (
     <FormField
       className="flex-grow"
+      type="url"
       inputClassName="border-none"
       value={value}
       name="url"
