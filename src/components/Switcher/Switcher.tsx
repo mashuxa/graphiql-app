@@ -2,11 +2,16 @@
 
 import { ChangeEvent, FC } from "react";
 
+export interface SwitcherOption {
+  label: string;
+  value: string;
+}
+
 interface SwitcherProps {
   name: string;
   value: string;
   onChange: (value: string) => void;
-  options: string[];
+  options: SwitcherOption[];
   defaultValue: string;
 }
 
@@ -26,29 +31,35 @@ const Switcher: FC<SwitcherProps> = ({
     <div className="flex py-1 items-center">
       <div className="relative inline-flex items-center w-28 bg-gray-300 rounded-full cursor-pointer">
         <input
-          defaultChecked={options[0] === defaultValue}
+          defaultChecked={options[0].value === defaultValue}
           name={name}
-          id={options[0]}
-          value={options[0]}
+          id={options[0].value}
+          value={options[0].value}
           type="radio"
           hidden
           onChange={handleChange}
         />
-        <label htmlFor={options[0]} className={`${optionClassName} left-4`}>
-          {options[0]}
+        <label
+          htmlFor={options[0].value}
+          className={`${optionClassName} left-4`}
+        >
+          {options[0].label}
         </label>
         <input
-          defaultChecked={options[1] === defaultValue}
+          defaultChecked={options[1].value === defaultValue}
           name={name}
-          value={options[1]}
-          id={options[1]}
+          value={options[1].value}
+          id={options[1].value}
           type="radio"
           className="peer"
           hidden
           onChange={handleChange}
         />
-        <label htmlFor={options[1]} className={`${optionClassName} right-4`}>
-          {options[1]}
+        <label
+          htmlFor={options[1].value}
+          className={`${optionClassName} right-4`}
+        >
+          {options[1].label}
         </label>
         <div className="absolute h-full w-14 bg-primary rounded-full shadow transform transition-transform duration-300 ease-in-out translate-x-0 peer-checked:translate-x-full"></div>
       </div>
