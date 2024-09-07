@@ -3,17 +3,27 @@
 import beautify from "json-beautify";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import Switcher from "src/components/Switcher/Switcher";
-import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
+import {
+  ArgType,
+  contentTypeHeaderKey,
+  getUrlData,
+  getUrlSearchParams,
+  replaceUrlData,
+} from "src/utils/headersUtils";
 
 interface BodyEditorProps {
   readOnly?: boolean;
 }
 
 export enum ContentType {
-  json = "json",
-  text = "text",
+  json = "application/json",
+  text = "text/plain",
 }
-const defaultContentType = ContentType.json;
+export const defaultContentType = ContentType.json;
+
+const contentTypeOptions = Object.entries(ContentType).map(
+  ([label, value]) => ({ label, value }),
+);
 
 const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
   const [body, setBody] = useState("");
@@ -46,6 +56,15 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
 
   const handleChangeType = (type: string): void => {
     setContentType(type as ContentType);
+
+    //порефактори, там может из утилсов что-то продублировала, лучше вынеси
+    const searchParams = getUrlSearchParams();
+
+    searchParams.set(contentTypeHeaderKey, type);
+
+    const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+
+    window.history.replaceState(null, "", newUrl);
   };
   const handleChangeBody = ({
     currentTarget,
@@ -66,6 +85,14 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const urlParams = getUrlSearchParams();
+    const defaultType =
+      urlParams.get(contentTypeHeaderKey) || defaultContentType;
+
+    setContentType(defaultType as ContentType);
+  }, []);
+
   return (
     <div className="w-full relative pt-4 pb-10">
       <div className="flex justify-between mb-2">
@@ -74,7 +101,7 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
           value={contentType}
           defaultValue={contentType}
           onChange={handleChangeType}
-          options={Object.values(ContentType)}
+          options={contentTypeOptions}
         />
         {contentType === ContentType.json && (
           <button
