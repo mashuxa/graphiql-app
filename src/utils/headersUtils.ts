@@ -1,8 +1,5 @@
-import { defaultContentType } from "src/components/BodyEditor/BodyEditor";
 import { Header } from "src/components/HeadersList/types";
 import { decodeFromBase64, encodeToBase64 } from "src/utils/utils";
-
-export const contentTypeHeaderKey = "Content-Type";
 
 export enum ArgType {
   method,
@@ -17,12 +14,8 @@ export interface SearchParam {
 
 export const makeSearchParams = (params: SearchParam[]): string => {
   const searchParams = new URLSearchParams();
-  const currentSearchParams = new URLSearchParams(window.location.search);
-  const contentTypeValue =
-    currentSearchParams.get(contentTypeHeaderKey) || defaultContentType;
 
   params.forEach(({ key, value }) => searchParams.set(key, value));
-  searchParams.set(contentTypeHeaderKey, contentTypeValue);
 
   return searchParams.toString();
 };
@@ -39,18 +32,18 @@ export const getUrlSearchParams = (): URLSearchParams => {
 
 export const getUrlHeadersFromSearchParams = (): Header[] => {
   const searchParams = getUrlSearchParams();
-  const searchParamsArr = Array.from(searchParams.entries());
 
-  return searchParamsArr.reduce<Header[]>((acc, [key, value]) => {
-    const isContentTypeHeader = key === "Content-Type";
-
-    return isContentTypeHeader ? acc : [...acc, newItem(key, value)];
-  }, []);
+  return Array.from(searchParams.entries()).map(([key, value]) =>
+    newItem(key, value),
+  );
 };
 
 export const updateUrlHeaders = (headers: Header[]): void => {
   const params = makeSearchParams(headers);
-  const newUrl = `${window.location.pathname}${params ? `?${params}` : ""}`;
+
+  const newUrl = params
+    ? `${window.location.pathname}?${params}`
+    : window.location.pathname;
 
   window.history.replaceState(null, "", newUrl);
 };
