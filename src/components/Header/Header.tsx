@@ -7,7 +7,7 @@ import { routes } from "src/constants";
 
 const Header: FC = () => {
   return (
-    <header data-testid="header" className="sticky top-0 bg-neutral-800">
+    <header data-testid="header" className="sticky top-0 z-10 bg-neutral-800">
       <ul className="flex items-center px-2 py-4 text-white">
         <li className="mr-auto">
           <Link href={routes.home}>

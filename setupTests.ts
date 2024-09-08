@@ -10,8 +10,8 @@ Object.defineProperty(globalThis, "crypto", {
 
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
-  useRouter: jest.fn(),
+  useRouter: jest.fn(() => ({ push: jest.fn() })),
   usePathname: jest.fn(),
-  useParams: jest.fn(),
-  useSearchParams: jest.fn(),
+  useParams: jest.fn(() => ({ params: [] })),
+  useSearchParams: jest.fn(() => ({ toString: jest.fn() })),
 }));

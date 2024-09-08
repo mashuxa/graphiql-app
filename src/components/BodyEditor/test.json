@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "isActive": true,
+  "roles": ["admin", "user"],
+  "profile": {
+    "age": 30,
+    "address": {
+      "street": "123 Main St",
+      "city": "Anytown",
+      "state": "CA",
+      "zip": "12345"
+    },
+    "phoneNumbers": [
+      { "type": "home", "number": "555-1234" },
+      { "type": "work", "number": "555-5678" }
+    ]
+  },
+  "preferences": {
+    "newsletter": true,
+    "notifications": { "email": true, "sms": false }
+  }
+}

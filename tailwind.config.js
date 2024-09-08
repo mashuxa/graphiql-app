@@ -4,9 +4,10 @@ const config = {
     extend: {
       colors: {
         primary: "#FFB749",
-        "primary-dark": "#805B26",
         secondary: "#3C424DFF",
+        success: "#559f60",
         warning: "#FF7738",
+        error: "#c4515c",
       },
     },
   },

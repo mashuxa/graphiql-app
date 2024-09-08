@@ -12,7 +12,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="bg-white p-8">
       {children}
-      <Button className="mt-6" onClick={signInWithGoogle}>
+      <Button className="mx-auto mt-6" onClick={signInWithGoogle}>
         Continue with Google
       </Button>
     </div>

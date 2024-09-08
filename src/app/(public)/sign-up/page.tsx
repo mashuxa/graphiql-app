@@ -42,7 +42,7 @@ const SignUp: NextPage = () => {
           name="repeatPassword"
           type="password"
         />
-        <Button>Submit</Button>
+        <Button className="mx-auto">Submit</Button>
       </form>
       <div className="pt-8 text-center">
         <Link href={routes.signIn}>Sign In</Link>
