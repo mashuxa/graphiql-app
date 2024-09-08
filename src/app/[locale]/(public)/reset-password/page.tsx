@@ -1,15 +1,17 @@
 "use client";
 
-import { NextPage } from "next";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 import Button from "src/components/Button/Button";
 import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
-import { signIn } from "src/firebase/auth/auth";
+import { resetPassword } from "src/firebase/auth/auth";
 
 // @todo: add validation
-const SignIn: NextPage = () => {
+const ResetPassword: FC = () => {
+  const t = useTranslations("ResetPassword");
+
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
@@ -17,32 +19,28 @@ const SignIn: NextPage = () => {
 
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
 
-    if (email && password) {
-      await signIn(email, password);
+    if (email) {
+      await resetPassword(email);
     }
   };
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6 text-center">Sign In</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">{t("title")}</h1>
       <form
         data-testid="sign-in-main"
         className="space-y-4"
         onSubmit={handleSubmit}
       >
-        <FormField label="Email" name="email" type="email" />
-        <FormField label="Password" name="password" type="password" />
-        <Button className="mx-auto">Submit</Button>
+        <FormField label={t("email")} name="email" type="email" />
+        <Button className="mx-auto">{t("submit")}</Button>
       </form>
       <div className="pt-8 text-center">
-        <Link href={routes.reset}>Forgot Password</Link>
-        <span> | </span>
-        <Link href={routes.signUp}>Sign Up</Link>
+        <Link href={routes.signIn}>{t("signIn")}</Link>
       </div>
     </>
   );
 };
 
-export default SignIn;
+export default ResetPassword;

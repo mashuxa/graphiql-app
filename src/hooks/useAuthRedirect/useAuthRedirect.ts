@@ -1,5 +1,5 @@
-import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
+import { useRouter } from "src/i18n.config";
 import { AuthContext } from "src/providers/AuthProvider/AuthProvider";
 
 const useAuthRedirect = (onAuthenticated: boolean, route: string): void => {

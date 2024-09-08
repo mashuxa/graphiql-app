@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "src/test/test-utils";
 
-import SignIn from "src/app/(public)/sign-in/page";
+import SignIn from "src/app/[locale]/(public)/sign-in/page";
 
 describe("Rest", () => {
   test("should render page", () => {

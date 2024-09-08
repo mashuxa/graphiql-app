@@ -1,0 +1,54 @@
+{
+  "LocaleSwitcher": {
+    "en": "Английский",
+    "ru": "Русский"
+  },
+  "AuthButton": {
+    "signOut": "Выйти",
+    "signIn": "Войти"
+  },
+  "Greeting": {
+    "auth-greeting": "С возвращением, {username}!",
+    "unauth-greeting": "Добро пожаловать!",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "restClient": "REST клиент",
+    "graphiqlClient": "GraphiQL клиент",
+    "history": "История"
+  },
+  "GraphiQL": {
+    "placeholder": "GraphiQL клиент"
+  },
+  "History": {
+    "placeholder": "История"
+  },
+  "RestClient": {
+    "placeholder": "Rest клиент"
+  },
+  "ResetPassword": {
+    "title": "Сбросить пароль",
+    "email": "Электронная почта",
+    "submit": "Сбросить",
+    "signIn": "Войти"
+  },
+  "SignIn": {
+    "title": "Войти",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "submit": "Войти",
+    "resetPassword": "Сбросить пароль",
+    "signUp": "Зарегистрироваться"
+  },
+  "SignUp": {
+    "title": "Зарегистрироваться",
+    "name": "Имя",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "repeatPassword": "Повторите пароль",
+    "submit": "Зарегистрироваться",
+    "signIn": "Войти"
+  },
+  "publicLayout": {
+    "signInWithGoogle": "Войти через Google"
+  }
+}
