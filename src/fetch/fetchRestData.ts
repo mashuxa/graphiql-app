@@ -9,7 +9,7 @@ type FetchOptions = {
   body?: string;
 };
 
-const methodsWithBody = [
+export const methodsWithBody = [
   HttpMethod.post,
   HttpMethod.put,
   HttpMethod.patch,

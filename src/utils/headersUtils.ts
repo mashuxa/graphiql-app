@@ -1,6 +1,8 @@
 import { Header } from "src/components/HeadersList/types";
 import { decodeFromBase64, encodeToBase64 } from "src/utils/utils";
 
+export const CONTENT_TYPE_HEADER_KEY = "Content-Type";
+
 export enum ArgType {
   method,
   url,
