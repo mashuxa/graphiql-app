@@ -17,13 +17,13 @@
     "history": "History"
   },
   "GraphiQL": {
-    "placeholder": "GraphiQL client"
+    "title": "GraphiQL client"
   },
   "History": {
-    "placeholder": "History"
+    "title": "History"
   },
   "RestClient": {
-    "placeholder": "Rest client"
+    "title": "Rest client"
   },
   "ResetPassword": {
     "title": "Reset password",

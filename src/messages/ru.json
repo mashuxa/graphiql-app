@@ -17,13 +17,13 @@
     "history": "История"
   },
   "GraphiQL": {
-    "placeholder": "GraphiQL клиент"
+    "title": "GraphiQL клиент"
   },
   "History": {
-    "placeholder": "История"
+    "title": "История"
   },
   "RestClient": {
-    "placeholder": "Rest клиент"
+    "title": "Rest клиент"
   },
   "ResetPassword": {
     "title": "Сбросить пароль",
