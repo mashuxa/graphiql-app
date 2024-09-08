@@ -8,9 +8,6 @@ import HeadersList from "src/components/HeadersList/HeadersList";
 import MethodSelector from "src/components/MethodSelector/MethodSelector";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import UrlInput from "src/components/UrlInput/UrlInput";
-import { methodsWithBody } from "src/fetch/fetchRestData";
-import { HttpMethod } from "src/types";
-import { getUrlSearchParams } from "src/utils/headersUtils";
 
 // todo: Variables section that can shown or hidden, specified variables are included in the body
 const RestForm = (): JSX.Element => {
@@ -26,30 +23,8 @@ const RestForm = (): JSX.Element => {
     router.push(currentUrl);
   };
 
-  const handleChange = (event: FormEvent<HTMLFormElement>): void => {
-    const formData = new FormData(event.currentTarget);
-
-    const method = formData.get("method");
-    const contentType = formData.get("contentType");
-    const body = formData.get("body");
-
-    const searchParams = getUrlSearchParams();
-
-    if (methodsWithBody.includes(method as HttpMethod) && body && contentType) {
-      searchParams.set("Content-Type", contentType as string);
-    } else {
-      searchParams.delete("Content-Type");
-    }
-
-    window.history.replaceState(
-      null,
-      "",
-      `${window.location.pathname}${searchParams ? `?${searchParams.toString()}` : ""}`,
-    );
-  };
-
   return (
-    <form onSubmit={handleSubmit} onChange={handleChange}>
+    <form onSubmit={handleSubmit}>
       <div className="flex border">
         <MethodSelector />
         <UrlInput />
