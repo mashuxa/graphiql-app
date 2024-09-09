@@ -20,3 +20,5 @@ export enum HttpMethod {
   connect = "CONNECT",
   trace = "TRACE",
 }
+
+export const httpMethodList = Object.values(HttpMethod);

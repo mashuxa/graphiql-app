@@ -2,15 +2,21 @@
 
 import { NextPage } from "next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { notFound } from "next/navigation";
 import H1Title from "src/components/H1Title/H1Title";
 import RestForm from "src/components/RestForm/RestForm";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { fetchRestData } from "src/fetch/fetchRestData";
+import { httpMethodList } from "src/types";
 
 const Rest: NextPage<{
   params: Params;
   searchParams: Record<string, string>;
 }> = async ({ params, searchParams }) => {
+  if (!httpMethodList.includes(params.method)) {
+    notFound();
+  }
+
   const { status, data } = await fetchRestData(params, searchParams);
 
   return (
