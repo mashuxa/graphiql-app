@@ -2,7 +2,7 @@
 
 import { NextPage } from "next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import GraphiqlForm from "src/components/GraphiqlForm/GraphiqlForm";
+import GraphiqlFormRedux from "src/components/GraphiqlFormRedux/GraphiqlFormRedux";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { fetchGraphqlData } from "src/fetch/fetchGraphqlData";
 
@@ -16,8 +16,7 @@ const Graphiql: NextPage<{
     <div data-testid="rest-main" className="w-full max-w-screen-xl px-4 py-8">
       <h1 className="text-2xl pb-4">Graphiql Client</h1>
 
-      <GraphiqlForm />
-
+      <GraphiqlFormRedux />
       <hr className="mt-8" />
       <SectionTitle>Response:</SectionTitle>
       <p>

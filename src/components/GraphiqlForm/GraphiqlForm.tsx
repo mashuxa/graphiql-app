@@ -28,7 +28,7 @@ const GraphiqlForm = (): JSX.Element => {
           <UrlInput />
         </div>
         <div className="border">
-          <UrlInput isUpdateUrl={false} />
+            <SdlUrlInput />
         </div>
       </div>
       <div>
