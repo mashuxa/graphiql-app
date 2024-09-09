@@ -3,7 +3,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { fetchGraphqlSchema } from "src/fetch/fetchGraphqlSchema";
 import { store } from "src/store/store";
-import BodyEditor from "../BodyEditor/BodyEditor";
+import BodyEditor, { BodyEditorTypes } from "../BodyEditor/BodyEditor";
 import Button from "../Button/Button";
 import DocumentExplorer from "../DocumentExplorer/DocumentExplorer";
 import HeadersList from "../HeadersList/HeadersList";
@@ -77,7 +77,7 @@ const GraphiqlForm = (): JSX.Element => {
         <HeadersList />
 
         <SectionTitle>Body:</SectionTitle>
-        <BodyEditor readOnly={false} />
+        <BodyEditor readOnly={false} type={BodyEditorTypes.graphql} />
       </form>
       {isShowExplorer === "true" ? <DocumentExplorer data={docData} /> : null}
     </>

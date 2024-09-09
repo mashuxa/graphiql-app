@@ -1,47 +1,73 @@
 "use client";
 
-import beautify from "json-beautify";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import Switcher from "src/components/Switcher/Switcher";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
+import {
+  beautifyGraphql,
+  beautifyJson,
+  isGraphqlValid,
+  isJsonValid,
+} from "./BodyEditor.helper";
+
+export enum BodyEditorTypes {
+  rest = "rest",
+  graphql = "graphql",
+}
 
 interface BodyEditorProps {
   readOnly?: boolean;
+  type?: BodyEditorTypes;
 }
 
 export enum ContentType {
   json = "json",
   text = "text",
 }
-const defaultContentType = ContentType.json;
 
-const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
+const validateFunctions = {
+  rest: isJsonValid,
+  graphql: isGraphqlValid,
+};
+
+const beautifyFunctions = {
+  rest: beautifyJson,
+  graphql: beautifyGraphql,
+};
+
+export const defaultContentType = ContentType.json;
+
+const BodyEditor: FC<BodyEditorProps> = ({
+  readOnly = true,
+  type = BodyEditorTypes.rest,
+}) => {
   const [body, setBody] = useState("");
   const [contentType, setContentType] = useState(defaultContentType);
   const [error, setError] = useState<string>("");
 
-  const validate = (data: string): boolean => {
-    try {
-      if (contentType === ContentType.json) {
-        JSON.parse(data);
-        setError("");
-      }
-    } catch {
-      setError("Invalid JSON format. Please correct the syntax.");
+  const isBodyValid = (data?: string): boolean => {
+    const validateFunction = validateFunctions[type];
+
+    if (validateFunction(data)) {
+      setError("");
+
+      return true;
+    } else {
+      setError(`Invalid ${type} format. Please correct the syntax.`);
 
       return false;
     }
-
-    return true;
   };
-  const beautifyJson = (): void => {
-    if (validate(body)) {
-      // todo: fix null type error
-      // @ts-expect-error because of json-beautify incorrect types
-      const beautifiedJson = beautify(JSON.parse(body), null, 2, 120);
 
-      setBody(beautifiedJson);
+  const beautify = async (): Promise<void> => {
+    const beautifyFunction = beautifyFunctions[type];
+
+    if (!isBodyValid(body)) {
+      return;
     }
+    const beautifiedBody = await beautifyFunction(body);
+
+    setBody(beautifiedBody);
   };
 
   const handleChangeType = (type: string): void => {
@@ -51,7 +77,7 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
     currentTarget,
   }: ChangeEvent<HTMLTextAreaElement>): void => {
     setBody(currentTarget.value);
-    validate(currentTarget.value);
+    isBodyValid(currentTarget.value);
   };
   const handleFocus = (): void => setError("");
   const handleBlur = (): void => {
@@ -69,18 +95,23 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
   return (
     <div className="w-full relative pt-4 pb-10">
       <div className="flex justify-between mb-2">
-        <Switcher
-          name="contentType"
-          value={contentType}
-          defaultValue={contentType}
-          onChange={handleChangeType}
-          options={Object.values(ContentType)}
-        />
+        {type === "rest" ? (
+          <Switcher
+            name="contentType"
+            value={contentType}
+            defaultValue={contentType}
+            onChange={handleChangeType}
+            options={Object.values(ContentType)}
+          />
+        ) : (
+          <div></div>
+        )}
+
         {contentType === ContentType.json && (
           <button
             type="button"
-            className="absolute right-0 top-3 p-2 bg-green-500 text-white rounded"
-            onClick={beautifyJson}
+            className="right-0 top-3 p-2 bg-green-500 text-white rounded"
+            onClick={beautify}
           >
             Beautify JSON
           </button>
@@ -94,11 +125,7 @@ const BodyEditor: FC<BodyEditorProps> = ({ readOnly = true }) => {
         onFocus={handleFocus}
         onChange={handleChangeBody}
         onBlur={handleBlur}
-        placeholder={
-          contentType === ContentType.json
-            ? "Enter JSON..."
-            : "Enter plain text..."
-        }
+        placeholder={`Enter ${type === "graphql" ? type : contentType.toString()}`}
       />
 
       {error && (
