@@ -3,7 +3,7 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { HttpMethod } from "src/types";
 import { decodeFromBase64 } from "src/utils/utils";
 
-type FetchOptions = {
+export type FetchOptions = {
   method: HttpMethod;
   headers: Record<string, string>;
   body?: string;
@@ -33,7 +33,6 @@ export const fetchRestData = async (
 
   const url = decodeFromBase64(urlBase64);
   const body = decodeFromBase64(bodyBase64);
-
   const headers: Record<string, string> = {};
 
   if (searchParams) {

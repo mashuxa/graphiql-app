@@ -32,7 +32,6 @@ export const fetchGraphqlData = async (
 
   if (methodsWithBody.includes(method) && body) {
     options.body = JSON.stringify({ query: body });
-    console.log(options.body);
   }
 
   return fetchData(url, options);
