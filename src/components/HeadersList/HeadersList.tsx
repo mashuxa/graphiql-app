@@ -49,7 +49,7 @@ const HeadersList: FC = () => {
           />
         ))}
       </div>
-      <Button onClick={addNewItem} className="bg-neutral-50">
+      <Button type="button" onClick={addNewItem} className="bg-neutral-50">
         ➕
       </Button>
     </div>
