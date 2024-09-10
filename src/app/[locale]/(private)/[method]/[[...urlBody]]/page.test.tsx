@@ -1,6 +1,5 @@
-// import { render, screen } from "@testing-library/react";
-// import Rest from "src/app/(private)/rest-client/[[...params]]/page";
-
+// import Rest from "src/app/[locale]/(private)/[method]/[[...urlBody]]/page";
+// import { render, screen } from "src/test/test-utils";
 describe("Rest Client", () => {
   test("should render page", () => {
     // render(<Rest />);

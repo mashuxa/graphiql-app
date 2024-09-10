@@ -1,17 +1,39 @@
 "use client";
 
-import { FC } from "react";
+import { locales, usePathname, useRouter, type Locale } from "src/i18n.config";
 
-const toggleLanguage = (): void => {
-  console.log("LanguageToggle clicked");
-};
+import { useLocale, useTranslations } from "next-intl";
 
-const LanguageToggle: FC = () => {
+const LocaleSwitcher = (): JSX.Element => {
+  const t = useTranslations("LocaleSwitcher");
+
+  const locale = useLocale() as Locale;
+
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const changeLocale = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    const newLocale = event.target.value as Locale;
+
+    router.replace(pathname, { locale: newLocale });
+  };
+
   return (
-    <button className="p-3" onClick={toggleLanguage}>
-      EN/RU
-    </button>
+    <div>
+      <select
+        value={locale}
+        onChange={changeLocale}
+        className="bg-inherit"
+        data-testid="language-toggle"
+      >
+        {locales.map((locale) => (
+          <option key={locale} value={locale}>
+            {t(locale)}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 
-export default LanguageToggle;
+export default LocaleSwitcher;

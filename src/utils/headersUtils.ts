@@ -41,23 +41,26 @@ export const getUrlHeadersFromSearchParams = (): Header[] => {
 export const updateUrlHeaders = (headers: Header[]): void => {
   const params = makeSearchParams(headers);
 
-  const newUrl = params
-    ? `${window.location.pathname}?${params}`
-    : window.location.pathname;
-
-  window.history.replaceState(null, "", newUrl);
+  window.history.replaceState(
+    null,
+    "",
+    `${window.location.pathname}${params ? `?${params}` : ""}`,
+  );
 };
 
 interface UrlData {
+  locale: string;
   method: string;
   url: string;
   body: string;
 }
 
 export const getUrlData = (): UrlData => {
-  const [, method, urlBase64, bodyBase64] = window.location.pathname.split("/");
+  const [, locale, method, urlBase64, bodyBase64] =
+    window.location.pathname.split("/");
 
   return {
+    locale,
     method,
     url: decodeFromBase64(urlBase64),
     body: decodeFromBase64(bodyBase64),
@@ -65,7 +68,8 @@ export const getUrlData = (): UrlData => {
 };
 
 export const replaceUrlData = (type: ArgType, value: string): void => {
-  let { method, url, body } = getUrlData();
+  // eslint-disable-next-line prefer-const
+  let { locale, method, url, body } = getUrlData();
   const searchParams = getUrlSearchParams().toString();
 
   switch (type) {
@@ -83,7 +87,7 @@ export const replaceUrlData = (type: ArgType, value: string): void => {
       break;
   }
 
-  const newUrl = `/${[method, encodeToBase64(url), encodeToBase64(body)].join("/")}?${searchParams}`;
+  const newUrl = `/${[locale, method, encodeToBase64(url), encodeToBase64(body)].join("/")}?${searchParams}`;
 
   window.history.replaceState(null, "", newUrl);
 };

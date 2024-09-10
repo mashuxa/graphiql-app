@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { FC } from "react";
+import { Link } from "src/i18n.config";
 
 interface NavigationLink {
   href: string;

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FC } from "react";
+import { Link } from "src/i18n.config";
 
 import {
   PROJECT_GITHUB_URL,

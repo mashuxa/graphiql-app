@@ -1,10 +1,8 @@
 "use client";
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { HttpMethod } from "src/types";
+import { httpMethodList } from "src/types";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
-
-const methods = Object.values(HttpMethod);
 
 const MethodSelector: FC = () => {
   const [value, setValue] = useState("");
@@ -31,7 +29,7 @@ const MethodSelector: FC = () => {
       value={value}
       onChange={handleChange}
     >
-      {methods.map((method) => (
+      {httpMethodList.map((method) => (
         <option key={method} value={method}>
           {method}
         </option>

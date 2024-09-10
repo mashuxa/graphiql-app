@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 import BodyEditor from "src/components/BodyEditor/BodyEditor";
 import Button from "src/components/Button/Button";
@@ -8,6 +8,7 @@ import HeadersList from "src/components/HeadersList/HeadersList";
 import MethodSelector from "src/components/MethodSelector/MethodSelector";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import UrlInput from "src/components/UrlInput/UrlInput";
+import { usePathname, useRouter } from "src/i18n.config";
 
 // todo: Variables section that can shown or hidden, specified variables are included in the body
 const RestForm = (): JSX.Element => {

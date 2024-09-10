@@ -21,6 +21,8 @@ export enum HttpMethod {
   trace = "TRACE",
 }
 
+export const httpMethodList = Object.values(HttpMethod);
+
 export interface RequestData {
   sdlUrl: string;
 }
