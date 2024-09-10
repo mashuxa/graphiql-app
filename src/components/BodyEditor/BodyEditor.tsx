@@ -113,7 +113,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
             className="right-0 top-3 p-2 bg-green-500 text-white rounded"
             onClick={beautify}
           >
-            Beautify JSON
+            Beautify
           </button>
         )}
       </div>

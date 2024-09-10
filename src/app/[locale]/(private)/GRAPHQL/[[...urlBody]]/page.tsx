@@ -23,7 +23,7 @@ const Graphiql: NextPage<{
         Status: <span>{status}</span>
       </p>
       <p>Body:</p>
-      <pre>{data}</pre>
+      <pre className="overflow-auto">{data}</pre>
     </div>
   );
 };
