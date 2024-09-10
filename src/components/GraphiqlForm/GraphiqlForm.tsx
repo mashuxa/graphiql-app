@@ -1,7 +1,8 @@
 "use client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { fetchGraphqlSchema } from "src/fetch/fetchGraphqlSchema";
+import { usePathname, useRouter } from "src/i18n.config";
 import { store } from "src/store/store";
 import BodyEditor, { BodyEditorTypes } from "../BodyEditor/BodyEditor";
 import Button from "../Button/Button";
@@ -21,7 +22,7 @@ const GraphiqlForm = (): JSX.Element => {
   // TODO: add validation
 
   useEffect(() => {
-    const isEmptyUrl = window.location.pathname.split("/").length <= 2;
+    const isEmptyUrl = window.location.pathname.split("/").length <= 3;
 
     if (!isEmptyUrl!) {
       const isShowExplorerFromLocalStorage =
