@@ -20,3 +20,12 @@ export enum HttpMethod {
   connect = "CONNECT",
   trace = "TRACE",
 }
+
+export interface RequestData {
+  sdlUrl: string;
+}
+
+export interface ResponseData {
+  status: number;
+  data: string;
+}
