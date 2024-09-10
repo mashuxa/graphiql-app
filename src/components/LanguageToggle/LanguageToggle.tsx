@@ -23,7 +23,7 @@ const LocaleSwitcher = (): JSX.Element => {
       <select
         value={locale}
         onChange={changeLocale}
-        className="bg-inherit"
+        className="h-12 border border-gray-300 text-gray-600 text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none"
         data-testid="language-toggle"
       >
         {locales.map((locale) => (
