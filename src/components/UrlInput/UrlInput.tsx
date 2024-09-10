@@ -5,13 +5,20 @@ import FormField from "src/components/FormField/FormField";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 
 // todo: add support cyrillic symbols
-const UrlInput: FC = () => {
+interface UrlInputProps {
+  isUpdateUrl?: boolean;
+}
+
+const UrlInput: FC<UrlInputProps> = ({ isUpdateUrl = true }: UrlInputProps) => {
   const [value, setValue] = useState("");
   const handleChange = ({
     currentTarget,
   }: ChangeEvent<HTMLInputElement>): void => {
     setValue(currentTarget.value);
-    replaceUrlData(ArgType.url, currentTarget.value);
+
+    if (isUpdateUrl) {
+      replaceUrlData(ArgType.url, currentTarget.value);
+    }
   };
 
   useEffect(() => {

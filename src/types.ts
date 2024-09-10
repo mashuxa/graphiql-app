@@ -22,3 +22,12 @@ export enum HttpMethod {
 }
 
 export const httpMethodList = Object.values(HttpMethod);
+
+export interface RequestData {
+  sdlUrl: string;
+}
+
+export interface ResponseData {
+  status: number;
+  data: string;
+}
