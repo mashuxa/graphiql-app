@@ -37,7 +37,6 @@ const RestForm = (): JSX.Element => {
       <SectionTitle>Headers:</SectionTitle>
       <HeadersList />
 
-      <SectionTitle>Body:</SectionTitle>
       <BodyEditor readOnly={false} />
     </form>
   );

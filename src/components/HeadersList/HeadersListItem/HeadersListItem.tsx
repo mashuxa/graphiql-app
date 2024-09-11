@@ -8,6 +8,7 @@ interface HeadersListItemProps {
   header: Header;
   onRemove: (index: number) => void;
   onChange: (index: number, field: "key" | "value", value: string) => void;
+  onBlur?: () => void;
 }
 
 const groupClassName = "flex-grow group-hover:bg-neutral-50";
@@ -17,6 +18,7 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
   header,
   onRemove,
   onChange,
+  onBlur,
 }) => {
   const handleRemove = useCallback(
     (): void => onRemove(index),
@@ -39,11 +41,13 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
         className={groupClassName}
         defaultValue={header.key}
         onChange={handleChangeKey}
+        {...(onBlur && { onBlur })}
       />
       <FormField
         className={groupClassName}
         defaultValue={header.value}
         onChange={handleChangeValue}
+        {...(onBlur && { onBlur })}
       />
       <Button
         className={`${groupClassName} flex-grow-0 transition opacity-30 hover:opacity-100`}

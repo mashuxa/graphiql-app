@@ -120,6 +120,31 @@ const BodyEditor: FC<BodyEditorProps> = ({
 
   return (
     <div className="w-full relative pt-4 pb-10">
+      <SectionTitle>Variables:</SectionTitle>
+      <div className="flex">
+        <div className="flex-grow pr-6">
+          {variables.map((variable, index) => (
+            <HeadersListItem
+              key={index}
+              index={index}
+              header={variable}
+              onChange={handleVariableChange}
+              onRemove={handleRemoveVariable}
+              onBlur={handleBlur}
+            />
+          ))}
+        </div>
+        <Button
+          type="button"
+          onClick={handleAddVariable}
+          className="bg-neutral-50"
+        >
+          ➕
+        </Button>
+      </div>
+
+      <SectionTitle>Body:</SectionTitle>
+
       <div className="flex justify-between mb-2">
         {type === "rest" ? (
           <Switcher
@@ -157,28 +182,6 @@ const BodyEditor: FC<BodyEditorProps> = ({
       {error && (
         <div className="absolute left-0 bottom-4 text-error">{error}</div>
       )}
-
-      <SectionTitle>Variables:</SectionTitle>
-      <div className="flex">
-        <div className="flex-grow pr-6">
-          {variables.map((variable, index) => (
-            <HeadersListItem
-              key={index}
-              index={index}
-              header={variable}
-              onChange={handleVariableChange}
-              onRemove={handleRemoveVariable}
-            />
-          ))}
-        </div>
-        <Button
-          type="button"
-          onClick={handleAddVariable}
-          className="bg-neutral-50"
-        >
-          ➕
-        </Button>
-      </div>
     </div>
   );
 };
