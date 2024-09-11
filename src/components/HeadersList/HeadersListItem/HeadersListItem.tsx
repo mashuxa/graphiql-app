@@ -7,7 +7,7 @@ interface HeadersListItemProps {
   index: number;
   header: Header;
   onRemove: (index: number) => void;
-  onChange: (index: number, fieldName: string, value: string) => void;
+  onChange: (index: number, field: "key" | "value", value: string) => void;
 }
 
 const groupClassName = "flex-grow group-hover:bg-neutral-50";

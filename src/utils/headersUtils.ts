@@ -23,7 +23,7 @@ export const makeSearchParams = (params: SearchParam[]): string => {
 export const newItem = (key = "", value = ""): Header => ({
   key,
   value,
-  id: crypto.randomUUID(),
+  // id: crypto.randomUUID(),
 });
 
 export const getUrlSearchParams = (): URLSearchParams => {
