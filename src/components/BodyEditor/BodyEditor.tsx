@@ -3,6 +3,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
 import Switcher from "src/components/Switcher/Switcher";
+import { useVariables } from "src/context/VariablesContext";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 import Button from "../Button/Button";
 import SectionTitle from "../SectionTitle/SectionTitle";
@@ -47,9 +48,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
   const [body, setBody] = useState("");
   const [contentType, setContentType] = useState(defaultContentType);
   const [error, setError] = useState<string>("");
-  const [variables, setVariables] = useState<{ key: string; value: string }[]>(
-    [],
-  );
+  const { variables, setVariables } = useVariables();
 
   const isBodyValid = (data?: string): boolean => {
     const validateFunction = validateFunctions[type];
@@ -87,7 +86,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
   };
   const handleFocus = (): void => setError("");
   const handleBlur = (): void => {
-    replaceUrlData(ArgType.body, body);
+    replaceUrlData(ArgType.body, body, variables);
   };
 
   const handleAddVariable = (): void => {

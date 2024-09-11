@@ -33,6 +33,9 @@ export const fetchRestData = async (
 
   const url = decodeFromBase64(urlBase64);
   const body = decodeFromBase64(bodyBase64);
+
+  console.log("body", body);
+
   const headers: Record<string, string> = {};
 
   if (searchParams) {

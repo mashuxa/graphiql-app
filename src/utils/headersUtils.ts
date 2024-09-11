@@ -1,4 +1,5 @@
 import { Header } from "src/components/HeadersList/types";
+import { Variable } from "src/context/VariablesContext";
 import { decodeFromBase64, encodeToBase64 } from "src/utils/utils";
 
 export enum ArgType {
@@ -67,7 +68,21 @@ export const getUrlData = (): UrlData => {
   };
 };
 
-export const replaceUrlData = (type: ArgType, value: string): void => {
+export const replaceBodyVariables = (
+  body: string,
+  variables: Variable[],
+): string => {
+  return variables.reduce(
+    (acc, { key, value }) => acc.replaceAll(`{{${key}}}`, value),
+    body,
+  );
+};
+
+export const replaceUrlData = (
+  type: ArgType,
+  value: string,
+  variables?: Variable[],
+): void => {
   // eslint-disable-next-line prefer-const
   let { locale, method, url, body } = getUrlData();
   const searchParams = getUrlSearchParams().toString();
@@ -85,6 +100,10 @@ export const replaceUrlData = (type: ArgType, value: string): void => {
       body = value;
 
       break;
+  }
+
+  if (Array.isArray(variables) && variables.length) {
+    body = replaceBodyVariables(body, variables);
   }
 
   const newUrl = `/${[locale, method, encodeToBase64(url), encodeToBase64(body)].join("/")}?${searchParams}`;
