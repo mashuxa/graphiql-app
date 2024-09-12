@@ -1,12 +1,9 @@
 "use client";
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
 import Switcher from "src/components/Switcher/Switcher";
 import { useGlobalState } from "src/context/VariablesContext";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
-import Button from "../Button/Button";
-import SectionTitle from "../SectionTitle/SectionTitle";
 import {
   beautifyGraphql,
   beautifyJson,
@@ -47,7 +44,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
 }) => {
   const [contentType, setContentType] = useState(defaultContentType);
   const [error, setError] = useState<string>("");
-  const { body, setBody, variables, setVariables } = useGlobalState();
+  const { body, setBody, variables } = useGlobalState();
 
   const isBodyValid = (data?: string): boolean => {
     const validateFunction = validateFunctions[type];
@@ -88,27 +85,6 @@ const BodyEditor: FC<BodyEditorProps> = ({
     replaceUrlData(ArgType.body, body, variables);
   };
 
-  const handleAddVariable = (): void => {
-    setVariables([...variables, { key: "", value: "" }]);
-  };
-
-  const handleRemoveVariable = (index: number): void => {
-    setVariables(variables.filter((_, i) => i !== index));
-  };
-
-  const handleVariableChange = (
-    index: number,
-    field: "key" | "value",
-    value: string,
-  ): void => {
-    const newVariables = [...variables];
-
-    newVariables[index][field] = value;
-
-    setVariables(newVariables);
-    console.log(variables);
-  };
-
   useEffect(() => {
     const defaultValue = getUrlData().body;
 
@@ -119,31 +95,6 @@ const BodyEditor: FC<BodyEditorProps> = ({
 
   return (
     <div className="w-full relative pt-4 pb-10">
-      <SectionTitle>Variables:</SectionTitle>
-      <div className="flex">
-        <div className="flex-grow pr-6">
-          {variables.map((variable, index) => (
-            <HeadersListItem
-              key={index}
-              index={index}
-              header={variable}
-              onChange={handleVariableChange}
-              onRemove={handleRemoveVariable}
-              onBlur={handleBlur}
-            />
-          ))}
-        </div>
-        <Button
-          type="button"
-          onClick={handleAddVariable}
-          className="bg-neutral-50"
-        >
-          ➕
-        </Button>
-      </div>
-
-      <SectionTitle>Body:</SectionTitle>
-
       <div className="flex justify-between mb-2">
         {type === "rest" ? (
           <Switcher
