@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { fetchGraphqlSchema } from "src/fetch/fetchGraphqlSchema";
 import { usePathname, useRouter } from "src/i18n.config";
 import { store } from "src/store/store";
+import { addHistoryItem } from "src/utils/utils";
 import BodyEditor, { BodyEditorTypes } from "../BodyEditor/BodyEditor";
 import Button from "../Button/Button";
 import DocumentExplorer from "../DocumentExplorer/DocumentExplorer";
@@ -24,7 +25,7 @@ const GraphiqlForm = (): JSX.Element => {
   useEffect(() => {
     const isEmptyUrl = window.location.pathname.split("/").length <= 3;
 
-    if (!isEmptyUrl!) {
+    if (!isEmptyUrl /*&& (isOpenedFromHistory)*/) {
       const isShowExplorerFromLocalStorage =
         localStorage.getItem("isShowDocumentExplorer") || "";
 
@@ -55,6 +56,7 @@ const GraphiqlForm = (): JSX.Element => {
     }
     const currentUrl = `${pathname}?${searchParams.toString()}`;
 
+    addHistoryItem({ url: window.location.href, executed: Date.now() });
     router.push(currentUrl);
   };
 
