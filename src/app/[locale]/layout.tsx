@@ -6,7 +6,6 @@ import { Inter } from "next/font/google";
 import { FC, ReactNode } from "react";
 import Footer from "src/components/Footer/Footer";
 import Header from "src/components/Header/Header";
-// import { GlobalStateProvider } from "src/context/GlobalStateContext";
 import AuthProvider from "src/providers/AuthProvider/AuthProvider";
 import StoreProvider from "src/store/StoreProvider";
 import "./globals.css";
@@ -31,8 +30,6 @@ const RootLayout: FC<Readonly<RootLayoutProps>> = async ({
 
   return (
     <AuthProvider>
-      {/* <GlobalStateProvider> */}
-      {/* <Provider store={store}> */}
       <StoreProvider>
         <html lang={locale}>
           <NextIntlClientProvider messages={messages}>
@@ -46,8 +43,6 @@ const RootLayout: FC<Readonly<RootLayoutProps>> = async ({
           </NextIntlClientProvider>
         </html>
       </StoreProvider>
-      {/* </Provider> */}
-      {/* </GlobalStateProvider> */}
     </AuthProvider>
   );
 };

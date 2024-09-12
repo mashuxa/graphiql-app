@@ -1,9 +1,8 @@
 "use client";
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import Switcher from "src/components/Switcher/Switcher";
-// import { useGlobalState } from "src/context/GlobalStateContext";
 import { useSelector } from "react-redux";
+import Switcher from "src/components/Switcher/Switcher";
 import { setBody } from "src/store/bodySlice";
 import { useAppDispatch } from "src/store/hooks";
 import { RootState } from "src/store/store";
@@ -48,7 +47,6 @@ const BodyEditor: FC<BodyEditorProps> = ({
 }) => {
   const [contentType, setContentType] = useState(defaultContentType);
   const [error, setError] = useState<string>("");
-  // const { body, setBody, variables } = useGlobalState();
   const dispatch = useAppDispatch();
   const body = useSelector((state: RootState) => state.body.body);
   const variables = useSelector(
