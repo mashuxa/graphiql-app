@@ -3,7 +3,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
 import Switcher from "src/components/Switcher/Switcher";
-import { useVariables } from "src/context/VariablesContext";
+import { useGlobalState } from "src/context/VariablesContext";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 import Button from "../Button/Button";
 import SectionTitle from "../SectionTitle/SectionTitle";
@@ -45,10 +45,9 @@ const BodyEditor: FC<BodyEditorProps> = ({
   readOnly = true,
   type = BodyEditorTypes.rest,
 }) => {
-  const [body, setBody] = useState("");
   const [contentType, setContentType] = useState(defaultContentType);
   const [error, setError] = useState<string>("");
-  const { variables, setVariables } = useVariables();
+  const { body, setBody, variables, setVariables } = useGlobalState();
 
   const isBodyValid = (data?: string): boolean => {
     const validateFunction = validateFunctions[type];
@@ -113,7 +112,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
   useEffect(() => {
     const defaultValue = getUrlData().body;
 
-    if (defaultValue) {
+    if (!body && defaultValue) {
       setBody(defaultValue);
     }
   }, []);

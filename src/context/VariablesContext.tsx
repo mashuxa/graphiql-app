@@ -7,33 +7,48 @@ import React, {
   useContext,
   useState,
 } from "react";
+// import { HttpMethod } from "src/types";
 
 export type Variable = {
   key: string;
   value: string;
 };
 
-interface VariablesContextType {
+type GlobalStateContextType = {
+  // method: HttpMethod;
+  // setMethod: React.Dispatch<React.SetStateAction<HttpMethod>>;
+  // url: string;
+  // setUrl: React.Dispatch<React.SetStateAction<string>>;
+  body: string;
+  setBody: React.Dispatch<React.SetStateAction<string>>;
   variables: Variable[];
   setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
-}
+};
 
-const VariablesContext = createContext<VariablesContextType | undefined>(
+// interface VariablesContextType {
+//   variables: Variable[];
+//   setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+// }
+
+const GlobalStateContext = createContext<GlobalStateContextType | undefined>(
   undefined,
 );
 
-export const VariablesProvider: FC<PropsWithChildren> = ({ children }) => {
+export const GlobalStateProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [body, setBody] = useState<string>("");
   const [variables, setVariables] = useState<Variable[]>([]);
 
   return (
-    <VariablesContext.Provider value={{ variables, setVariables }}>
+    <GlobalStateContext.Provider
+      value={{ body, setBody, variables, setVariables }}
+    >
       {children}
-    </VariablesContext.Provider>
+    </GlobalStateContext.Provider>
   );
 };
 
-export const useVariables = (): VariablesContextType => {
-  const context = useContext(VariablesContext);
+export const useGlobalState = (): GlobalStateContextType => {
+  const context = useContext(GlobalStateContext);
 
   if (!context) {
     throw new Error("useVariables must be used within a VariablesProvider");
