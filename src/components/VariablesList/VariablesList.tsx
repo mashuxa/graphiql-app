@@ -3,18 +3,27 @@
 import { FC } from "react";
 import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
-import { useGlobalState } from "src/context/GlobalStateContext";
+// import { useGlobalState } from "src/context/GlobalStateContext";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "src/store/hooks";
+import { RootState } from "src/store/store";
+import { setVariables } from "src/store/variablesSlice";
 import { ArgType, newItem, replaceUrlData } from "src/utils/headersUtils";
 
 const VariablesList: FC = () => {
-  const { body, variables, setVariables } = useGlobalState();
+  // const { body, variables, setVariables } = useGlobalState();
+  const dispatch = useAppDispatch();
+  const body = useSelector((state: RootState) => state.body.body);
+  const variables = useSelector(
+    (state: RootState) => state.variables.variables,
+  );
 
   const handleAddVariable = (): void => {
-    setVariables([...variables, newItem()]);
+    dispatch(setVariables([...variables, newItem()]));
   };
 
   const handleRemoveVariable = (index: number): void => {
-    setVariables(variables.filter((_, i) => i !== index));
+    dispatch(setVariables(variables.filter((_, i) => i !== index)));
   };
 
   const handleVariableChange = (
@@ -24,9 +33,17 @@ const VariablesList: FC = () => {
   ): void => {
     const newVariables = [...variables];
 
-    newVariables[index][field] = value;
+    // newVariables[index][field] = value;
+    newVariables[index] = {
+      ...newVariables[index],
+      [field]: value,
+    };
 
-    setVariables(newVariables);
+    // const newVariables = variables.map((variable, i) =>
+    //   i === index ? { ...variable, [field]: value } : variable,
+    // );
+
+    dispatch(setVariables(newVariables));
     console.log(variables);
   };
 

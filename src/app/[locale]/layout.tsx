@@ -6,8 +6,9 @@ import { Inter } from "next/font/google";
 import { FC, ReactNode } from "react";
 import Footer from "src/components/Footer/Footer";
 import Header from "src/components/Header/Header";
-import { GlobalStateProvider } from "src/context/GlobalStateContext";
+// import { GlobalStateProvider } from "src/context/GlobalStateContext";
 import AuthProvider from "src/providers/AuthProvider/AuthProvider";
+import StoreProvider from "src/store/StoreProvider";
 import "./globals.css";
 
 interface RootLayoutProps {
@@ -30,7 +31,9 @@ const RootLayout: FC<Readonly<RootLayoutProps>> = async ({
 
   return (
     <AuthProvider>
-      <GlobalStateProvider>
+      {/* <GlobalStateProvider> */}
+      {/* <Provider store={store}> */}
+      <StoreProvider>
         <html lang={locale}>
           <NextIntlClientProvider messages={messages}>
             <body className={`${inter.className} flex flex-col min-h-screen`}>
@@ -42,7 +45,9 @@ const RootLayout: FC<Readonly<RootLayoutProps>> = async ({
             </body>
           </NextIntlClientProvider>
         </html>
-      </GlobalStateProvider>
+      </StoreProvider>
+      {/* </Provider> */}
+      {/* </GlobalStateProvider> */}
     </AuthProvider>
   );
 };
