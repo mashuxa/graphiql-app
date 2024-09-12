@@ -31,3 +31,8 @@ export interface ResponseData {
   status: number;
   data: string;
 }
+
+export interface HistoryItem {
+  url: string;
+  executed: number;
+}

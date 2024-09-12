@@ -30,3 +30,5 @@ export const teamData = [
 export const RSS_REACT_GITHUB_URL = "https://rs.school/react/";
 export const PROJECT_GITHUB_URL =
   "https://github.com/mashuxa/graphiql-app/pull/1";
+
+export const LOCAL_STORAGE_HISTORY = "History";

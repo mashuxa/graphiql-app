@@ -33,6 +33,8 @@ export const getUrlSearchParams = (): URLSearchParams => {
 export const getUrlHeadersFromSearchParams = (): Header[] => {
   const searchParams = getUrlSearchParams();
 
+  searchParams.delete("fetch");
+
   return Array.from(searchParams.entries()).map(([key, value]) =>
     newItem(key, value),
   );
