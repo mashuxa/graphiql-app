@@ -1,4 +1,5 @@
 import { parse } from "graphql";
+import beautify from "json-beautify";
 import { format } from "prettier";
 import plugin from "prettier/plugins/graphql";
 
