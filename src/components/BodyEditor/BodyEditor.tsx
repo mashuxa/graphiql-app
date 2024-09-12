@@ -2,7 +2,7 @@
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import Switcher from "src/components/Switcher/Switcher";
-import { useGlobalState } from "src/context/VariablesContext";
+import { useGlobalState } from "src/context/GlobalStateContext";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 import {
   beautifyGraphql,

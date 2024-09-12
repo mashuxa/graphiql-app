@@ -3,7 +3,7 @@
 import { FC } from "react";
 import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
-import { useGlobalState } from "src/context/VariablesContext";
+import { useGlobalState } from "src/context/GlobalStateContext";
 import { ArgType, replaceUrlData } from "src/utils/headersUtils";
 
 const VariablesList: FC = () => {

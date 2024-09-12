@@ -1,5 +1,5 @@
 import { Header } from "src/components/HeadersList/types";
-import { Variable } from "src/context/VariablesContext";
+import { Variable } from "src/context/GlobalStateContext";
 import { decodeFromBase64, encodeToBase64 } from "src/utils/utils";
 
 export enum ArgType {
