@@ -1,7 +1,11 @@
 "use client";
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Switcher from "src/components/Switcher/Switcher";
+import { setBody } from "src/store/bodySlice";
+import { useAppDispatch } from "src/store/hooks";
+import { RootState } from "src/store/store";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 import {
   beautifyGraphql,
@@ -41,9 +45,13 @@ const BodyEditor: FC<BodyEditorProps> = ({
   readOnly = true,
   type = BodyEditorTypes.rest,
 }) => {
-  const [body, setBody] = useState("");
   const [contentType, setContentType] = useState(defaultContentType);
   const [error, setError] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const body = useSelector((state: RootState) => state.body.body);
+  const variables = useSelector(
+    (state: RootState) => state.variables.variables,
+  );
 
   const isBodyValid = (data?: string): boolean => {
     const validateFunction = validateFunctions[type];
@@ -67,7 +75,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
     }
     const beautifiedBody = await beautifyFunction(body);
 
-    setBody(beautifiedBody);
+    dispatch(setBody(beautifiedBody));
   };
 
   const handleChangeType = (type: string): void => {
@@ -76,19 +84,19 @@ const BodyEditor: FC<BodyEditorProps> = ({
   const handleChangeBody = ({
     currentTarget,
   }: ChangeEvent<HTMLTextAreaElement>): void => {
-    setBody(currentTarget.value);
+    dispatch(setBody(currentTarget.value));
     isBodyValid(currentTarget.value);
   };
   const handleFocus = (): void => setError("");
   const handleBlur = (): void => {
-    replaceUrlData(ArgType.body, body);
+    replaceUrlData(ArgType.body, body, variables);
   };
 
   useEffect(() => {
     const defaultValue = getUrlData().body;
 
-    if (defaultValue) {
-      setBody(defaultValue);
+    if (!body && defaultValue) {
+      dispatch(setBody(defaultValue));
     }
   }, []);
 

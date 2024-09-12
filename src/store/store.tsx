@@ -1,15 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
 
-import { useDispatch } from "react-redux";
+import { RequestData } from "src/types";
+import bodyReducer, { BodyState } from "./bodySlice";
 import requestDataSlice from "./requestDataSlice";
+import variablesReducer, { VariablesState } from "./variablesSlice";
 
-export const store = configureStore({
-  reducer: {
-    requestData: requestDataSlice,
-  },
-});
+export const makeStore = (): EnhancedStore<{
+  requestData: RequestData;
+  body: BodyState;
+  variables: VariablesState;
+}> => {
+  return configureStore({
+    reducer: {
+      requestData: requestDataSlice,
+      body: bodyReducer,
+      variables: variablesReducer,
+    },
+  });
+};
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = (): typeof store.dispatch =>
-  useDispatch<AppDispatch>();
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];

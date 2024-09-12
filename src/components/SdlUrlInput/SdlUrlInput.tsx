@@ -1,10 +1,9 @@
 "use client";
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import FormField from "src/components/FormField/FormField";
+import { useAppDispatch, useAppStore } from "src/store/hooks";
 import { update } from "src/store/requestDataSlice";
-import { store } from "src/store/store";
 
 interface UrlInputProps {
   isUpdateUrl?: boolean;
@@ -12,7 +11,8 @@ interface UrlInputProps {
 
 const SdlUrlInput: FC<UrlInputProps> = () => {
   const [value, setValue] = useState<string>("");
-  const dispatch = useDispatch();
+  const store = useAppStore();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const defaultValue = localStorage.getItem("SdlUrl") || "";

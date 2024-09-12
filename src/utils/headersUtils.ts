@@ -67,7 +67,21 @@ export const getUrlData = (): UrlData => {
   };
 };
 
-export const replaceUrlData = (type: ArgType, value: string): void => {
+export const replaceBodyVariables = (
+  body: string,
+  variables: Header[],
+): string => {
+  return variables.reduce(
+    (acc, { key, value }) => acc.replaceAll(`{{${key}}}`, value),
+    body,
+  );
+};
+
+export const replaceUrlData = (
+  type: ArgType,
+  value: string,
+  variables?: Header[],
+): void => {
   // eslint-disable-next-line prefer-const
   let { locale, method, url, body } = getUrlData();
   const searchParams = getUrlSearchParams().toString();
@@ -85,6 +99,10 @@ export const replaceUrlData = (type: ArgType, value: string): void => {
       body = value;
 
       break;
+  }
+
+  if (Array.isArray(variables) && variables.length) {
+    body = replaceBodyVariables(body, variables);
   }
 
   const newUrl = `/${[locale, method, encodeToBase64(url), encodeToBase64(body)].join("/")}?${searchParams}`;

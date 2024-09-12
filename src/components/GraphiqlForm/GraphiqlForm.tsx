@@ -3,7 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { fetchGraphqlSchema } from "src/fetch/fetchGraphqlSchema";
 import { usePathname, useRouter } from "src/i18n.config";
-import { store } from "src/store/store";
+import { useAppStore } from "src/store/hooks";
 import BodyEditor, { BodyEditorTypes } from "../BodyEditor/BodyEditor";
 import Button from "../Button/Button";
 import DocumentExplorer from "../DocumentExplorer/DocumentExplorer";
@@ -11,6 +11,7 @@ import HeadersList from "../HeadersList/HeadersList";
 import SdlUrlInput from "../SdlUrlInput/SdlUrlInput";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import UrlInput from "../UrlInput/UrlInput";
+import VariablesList from "../VariablesList/VariablesList";
 
 const GraphiqlForm = (): JSX.Element => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const GraphiqlForm = (): JSX.Element => {
   const searchParams = useSearchParams();
   const [isShowExplorer, setIsShowExplorer] = useState<string>("false");
   const [docData, setDocData] = useState<string>("");
+  const store = useAppStore();
 
   // TODO: add validation
 
@@ -79,6 +81,9 @@ const GraphiqlForm = (): JSX.Element => {
 
         <SectionTitle>Body:</SectionTitle>
         <BodyEditor readOnly={false} type={BodyEditorTypes.graphql} />
+
+        <SectionTitle>Variables:</SectionTitle>
+        <VariablesList />
       </form>
       {isShowExplorer === "true" ? <DocumentExplorer data={docData} /> : null}
     </>

@@ -11,6 +11,7 @@ interface UrlInputProps {
 
 const UrlInput: FC<UrlInputProps> = ({ isUpdateUrl = true }: UrlInputProps) => {
   const [value, setValue] = useState("");
+
   const handleChange = ({
     currentTarget,
   }: ChangeEvent<HTMLInputElement>): void => {
