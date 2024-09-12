@@ -7,12 +7,8 @@ import React, {
   useContext,
   useState,
 } from "react";
+import { Header } from "src/components/HeadersList/types";
 // import { HttpMethod } from "src/types";
-
-export type Variable = {
-  key: string;
-  value: string;
-};
 
 type GlobalStateContextType = {
   // method: HttpMethod;
@@ -21,8 +17,8 @@ type GlobalStateContextType = {
   // setUrl: React.Dispatch<React.SetStateAction<string>>;
   body: string;
   setBody: React.Dispatch<React.SetStateAction<string>>;
-  variables: Variable[];
-  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+  variables: Header[];
+  setVariables: React.Dispatch<React.SetStateAction<Header[]>>;
 };
 
 // interface VariablesContextType {
@@ -36,7 +32,7 @@ const GlobalStateContext = createContext<GlobalStateContextType | undefined>(
 
 export const GlobalStateProvider: FC<PropsWithChildren> = ({ children }) => {
   const [body, setBody] = useState<string>("");
-  const [variables, setVariables] = useState<Variable[]>([]);
+  const [variables, setVariables] = useState<Header[]>([]);
 
   return (
     <GlobalStateContext.Provider

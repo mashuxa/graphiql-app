@@ -1,5 +1,4 @@
 import { Header } from "src/components/HeadersList/types";
-import { Variable } from "src/context/GlobalStateContext";
 import { decodeFromBase64, encodeToBase64 } from "src/utils/utils";
 
 export enum ArgType {
@@ -24,7 +23,7 @@ export const makeSearchParams = (params: SearchParam[]): string => {
 export const newItem = (key = "", value = ""): Header => ({
   key,
   value,
-  // id: crypto.randomUUID(),
+  id: crypto.randomUUID(),
 });
 
 export const getUrlSearchParams = (): URLSearchParams => {
@@ -70,7 +69,7 @@ export const getUrlData = (): UrlData => {
 
 export const replaceBodyVariables = (
   body: string,
-  variables: Variable[],
+  variables: Header[],
 ): string => {
   return variables.reduce(
     (acc, { key, value }) => acc.replaceAll(`{{${key}}}`, value),
@@ -81,7 +80,7 @@ export const replaceBodyVariables = (
 export const replaceUrlData = (
   type: ArgType,
   value: string,
-  variables?: Variable[],
+  variables?: Header[],
 ): void => {
   // eslint-disable-next-line prefer-const
   let { locale, method, url, body } = getUrlData();

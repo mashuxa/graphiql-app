@@ -41,7 +41,7 @@ const HeadersList: FC = () => {
       <div className="flex-grow pr-6">
         {headers.map((header, index) => (
           <HeadersListItem
-            key={index}
+            key={header.id}
             index={index}
             header={header}
             onChange={onChange}

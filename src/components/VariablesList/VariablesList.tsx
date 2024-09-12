@@ -4,13 +4,13 @@ import { FC } from "react";
 import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
 import { useGlobalState } from "src/context/GlobalStateContext";
-import { ArgType, replaceUrlData } from "src/utils/headersUtils";
+import { ArgType, newItem, replaceUrlData } from "src/utils/headersUtils";
 
 const VariablesList: FC = () => {
   const { body, variables, setVariables } = useGlobalState();
 
   const handleAddVariable = (): void => {
-    setVariables([...variables, { key: "", value: "" }]);
+    setVariables([...variables, newItem()]);
   };
 
   const handleRemoveVariable = (index: number): void => {
@@ -40,7 +40,7 @@ const VariablesList: FC = () => {
         <div className="flex-grow pr-6">
           {variables.map((variable, index) => (
             <HeadersListItem
-              key={index}
+              key={variable.id}
               index={index}
               header={variable}
               onChange={handleVariableChange}
