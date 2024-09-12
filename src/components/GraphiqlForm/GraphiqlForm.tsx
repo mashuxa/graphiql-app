@@ -11,6 +11,7 @@ import HeadersList from "../HeadersList/HeadersList";
 import SdlUrlInput from "../SdlUrlInput/SdlUrlInput";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import UrlInput from "../UrlInput/UrlInput";
+import VariablesList from "../VariablesList/VariablesList";
 
 const GraphiqlForm = (): JSX.Element => {
   const router = useRouter();
@@ -79,6 +80,9 @@ const GraphiqlForm = (): JSX.Element => {
 
         <SectionTitle>Body:</SectionTitle>
         <BodyEditor readOnly={false} type={BodyEditorTypes.graphql} />
+
+        <SectionTitle>Variables:</SectionTitle>
+        <VariablesList />
       </form>
       {isShowExplorer === "true" ? <DocumentExplorer data={docData} /> : null}
     </>
