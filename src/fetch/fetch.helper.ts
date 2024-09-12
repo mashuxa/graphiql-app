@@ -1,5 +1,5 @@
 import beautify from "json-beautify";
-import { FetchOptions } from "./fetchRestData";
+import { FetchOptions } from "src/fetch/types";
 
 export const fetchData = async (
   url: string,
