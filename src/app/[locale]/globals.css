@@ -14,4 +14,18 @@
   .delay-300 {
     animation-delay: 0.3s;
   }
+
+  .h-sdl-sidebar {
+    height: calc(100vh - 19rem);
+  }
+
+  * {
+    transition-duration: 0.2s;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+
+    &:hover {
+      scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+    }
+  }
 }
