@@ -1,13 +1,15 @@
 "use client";
 
 import { FC, PropsWithChildren } from "react";
-import { routes } from "src/constants";
-import useAuthRedirect from "src/hooks/useAuthRedirect/useAuthRedirect";
+import AuthRedirect from "src/components/AuthRedirect/AuthRedirect";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
-  useAuthRedirect(false, routes.signIn);
-
-  return children;
+  return (
+    <div data-testid="main" className="w-full max-w-screen-xl px-4 py-8">
+      <AuthRedirect />
+      {children}
+    </div>
+  );
 };
 
 export default Layout;

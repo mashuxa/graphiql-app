@@ -31,3 +31,9 @@ export interface ResponseData {
   status: number;
   data: string;
 }
+
+export type FetchOptions = {
+  method: HttpMethod;
+  headers: Record<string, string>;
+  body?: string;
+};
