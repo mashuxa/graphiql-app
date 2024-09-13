@@ -1,51 +1,21 @@
 "use client";
 
-import beautify from "json-beautify";
-import { FC, FormEvent, useState } from "react";
+import { FC } from "react";
 import BodyEditor from "src/components/BodyEditor/BodyEditor";
 import Button from "src/components/Button/Button";
 import HeadersList from "src/components/HeadersList/HeadersList";
 import MethodSelector from "src/components/MethodSelector/MethodSelector";
 import ResponseData from "src/components/ResponseData/ResponseData";
 import UrlInput from "src/components/UrlInput/UrlInput";
-import VariablesList from "../VariablesList/VariablesList";
-
-interface ResponseData {
-  status: number;
-  data: string;
-}
-
-const defaultResponseData: ResponseData = {
-  status: 0,
-  data: "",
-};
+import VariablesList from "src/components/VariablesList/VariablesList";
+import useFormAction from "src/hooks/useFormAction/useFormAction";
 
 // todo: Variables section that can shown or hidden, specified variables are included in the body
 const RestForm: FC = () => {
-  const [response, setResponse] = useState<ResponseData>(defaultResponseData);
-  // TODO: add validation
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
-    event.preventDefault();
-    const { pathname, search } = window.location;
-    const response = await fetch(`/api${pathname}${search}`);
-
-    if (response.ok) {
-      const responseJson = await response.json();
-      // @ts-expect-error because of json-beautify incorrect types
-      const data = beautify(responseJson, null, 2, 120);
-
-      setResponse({ status: response.status, data });
-    } else {
-      const data = await response.text();
-
-      setResponse({ status: response.status, data });
-    }
-  };
+  const { response, isLoading, handleSubmit } = useFormAction();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={isLoading ? "animate-blink" : ""} onSubmit={handleSubmit}>
       <div className="flex border">
         <MethodSelector />
         <UrlInput />
@@ -56,7 +26,7 @@ const RestForm: FC = () => {
       <HeadersList />
       <BodyEditor readOnly={false} />
       <VariablesList />
-      <ResponseData status={response.status} data={response.data} />
+      {response && <ResponseData {...response} />}
     </form>
   );
 };

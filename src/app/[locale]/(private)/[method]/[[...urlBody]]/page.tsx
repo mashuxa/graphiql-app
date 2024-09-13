@@ -1,3 +1,5 @@
+"use client";
+
 import { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
@@ -6,10 +8,7 @@ import H1Title from "src/components/H1Title/H1Title";
 import RestForm from "src/components/RestForm/RestForm";
 import { httpMethodList } from "src/types";
 
-const Rest: NextPage<{
-  params: Params;
-  searchParams: Record<string, string>;
-}> = async ({ params }) => {
+const Rest: NextPage<{ params: Params }> = ({ params }) => {
   const t = useTranslations("RestClient");
 
   if (!httpMethodList.includes(params.method)) {

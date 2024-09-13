@@ -1,6 +1,5 @@
 import { buildClientSchema, getIntrospectionQuery, printSchema } from "graphql";
-import { HttpMethod } from "src/types";
-import { FetchOptions } from "./fetch.types";
+import { FetchOptions, HttpMethod } from "src/types";
 
 export const fetchGraphqlSchema = async (
   url: string,
