@@ -7,7 +7,6 @@ import Button from "src/components/Button/Button";
 import HeadersList from "src/components/HeadersList/HeadersList";
 import MethodSelector from "src/components/MethodSelector/MethodSelector";
 import ResponseData from "src/components/ResponseData/ResponseData";
-import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import UrlInput from "src/components/UrlInput/UrlInput";
 import VariablesList from "../VariablesList/VariablesList";
 
@@ -54,17 +53,9 @@ const RestForm: FC = () => {
           SEND
         </Button>
       </div>
-
-      <SectionTitle>Headers:</SectionTitle>
       <HeadersList />
-
-      <SectionTitle>Body:</SectionTitle>
       <BodyEditor readOnly={false} />
-
-      <SectionTitle>Variables:</SectionTitle>
       <VariablesList />
-
-      <SectionTitle>Response:</SectionTitle>
       <ResponseData status={response.status} data={response.data} />
     </form>
   );

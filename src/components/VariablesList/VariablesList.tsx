@@ -4,6 +4,7 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
+import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { useAppDispatch } from "src/store/hooks";
 import { RootState } from "src/store/store";
 import { setVariables } from "src/store/variablesSlice";
@@ -46,6 +47,7 @@ const VariablesList: FC = () => {
 
   return (
     <>
+      <SectionTitle>Variables:</SectionTitle>
       <div className="flex">
         <div className="flex-grow pr-6">
           {variables.map((variable, index) => (

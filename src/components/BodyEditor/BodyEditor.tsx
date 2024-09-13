@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import Switcher from "src/components/Switcher/Switcher";
 import { setBody } from "src/store/bodySlice";
 import { useAppDispatch } from "src/store/hooks";
@@ -101,45 +102,49 @@ const BodyEditor: FC<BodyEditorProps> = ({
   }, []);
 
   return (
-    <div className="w-full relative pt-4 pb-10">
-      <div className="flex justify-between mb-2">
-        {type === "rest" ? (
-          <Switcher
-            name="contentType"
-            value={contentType}
-            defaultValue={contentType}
-            onChange={handleChangeType}
-            options={Object.values(ContentType)}
-          />
-        ) : (
-          <div></div>
-        )}
+    <>
+      <SectionTitle>Body:</SectionTitle>
 
-        {contentType === ContentType.json && (
-          <button
-            type="button"
-            className="right-0 top-3 p-2 bg-green-500 text-white rounded"
-            onClick={beautify}
-          >
-            Beautify
-          </button>
+      <div className="w-full relative pt-4 pb-10">
+        <div className="flex justify-between mb-2">
+          {type === "rest" ? (
+            <Switcher
+              name="contentType"
+              value={contentType}
+              defaultValue={contentType}
+              onChange={handleChangeType}
+              options={Object.values(ContentType)}
+            />
+          ) : (
+            <div></div>
+          )}
+
+          {contentType === ContentType.json && (
+            <button
+              type="button"
+              className="right-0 top-3 p-2 bg-green-500 text-white rounded"
+              onClick={beautify}
+            >
+              Beautify
+            </button>
+          )}
+        </div>
+        <textarea
+          disabled={readOnly}
+          name="body"
+          className={`w-full min-h-80 border p-4 rounded outline-none ${error && "border-error"}`}
+          value={body}
+          onFocus={handleFocus}
+          onChange={handleChangeBody}
+          onBlur={handleBlur}
+          placeholder={`Enter ${type === "graphql" ? type : contentType.toString()}`}
+        />
+
+        {error && (
+          <div className="absolute left-0 bottom-4 text-error">{error}</div>
         )}
       </div>
-      <textarea
-        disabled={readOnly}
-        name="body"
-        className={`w-full min-h-80 border p-4 rounded outline-none ${error && "border-error"}`}
-        value={body}
-        onFocus={handleFocus}
-        onChange={handleChangeBody}
-        onBlur={handleBlur}
-        placeholder={`Enter ${type === "graphql" ? type : contentType.toString()}`}
-      />
-
-      {error && (
-        <div className="absolute left-0 bottom-4 text-error">{error}</div>
-      )}
-    </div>
+    </>
   );
 };
 
