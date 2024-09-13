@@ -46,7 +46,7 @@ export const handleFetch = async (
 
   try {
     const response = await fetch(url, options);
-    const data = response.ok ? await response.json() : await response.text();
+    const data = await response.json();
 
     return NextResponse.json(data, { status: response.status });
   } catch (error) {

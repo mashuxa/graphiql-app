@@ -2,6 +2,8 @@ import { NextRequest } from "next/server";
 import { handleFetch } from "src/app/api/[locale]/handleFetch";
 import { HttpMethod } from "src/types";
 
+export const revalidate = 0;
+
 interface Params {
   params: { path: [string, string] };
 }

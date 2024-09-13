@@ -20,10 +20,16 @@ const useFormAction = (): UseFormActionReturnType => {
       setIsLoading(true);
 
       const { pathname, search } = window.location;
-      const response = await fetch(`/api${pathname}${search}`);
+      const response = await fetch(`/api${pathname}${search}`, {
+        cache: "no-store",
+      });
       const data = await response.json();
 
       setResponse({ status: response.status, data });
+    } catch (e) {
+      console.error(e);
+      // @todo: add notification
+      alert("Connection failed.");
     } finally {
       setIsLoading(false);
     }
