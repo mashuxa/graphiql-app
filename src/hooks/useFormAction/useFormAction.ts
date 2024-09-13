@@ -1,4 +1,3 @@
-import beautify from "json-beautify";
 import { FormEvent, useState } from "react";
 import { ResponseData as ResponseDataType } from "src/types";
 
@@ -22,22 +21,9 @@ const useFormAction = (): UseFormActionReturnType => {
 
       const { pathname, search } = window.location;
       const response = await fetch(`/api${pathname}${search}`);
-
-      let data: string;
-
-      if (response.ok) {
-        const responseJson = await response.json();
-
-        // @ts-expect-error because of json-beautify incorrect types
-        data = beautify(responseJson, null, 2, 120);
-      } else {
-        data = await response.text();
-      }
+      const data = await response.json();
 
       setResponse({ status: response.status, data });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      throw error;
     } finally {
       setIsLoading(false);
     }
