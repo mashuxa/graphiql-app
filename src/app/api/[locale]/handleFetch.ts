@@ -1,3 +1,4 @@
+import beautify from "json-beautify";
 import { NextRequest, NextResponse } from "next/server";
 import { FetchOptions, HttpMethod } from "src/types";
 import { decodeFromBase64 } from "src/utils/utils";
@@ -46,9 +47,13 @@ export const handleFetch = async (
 
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
+    const contentType = response.headers.get("content-type");
+    const isJson = contentType?.includes("application/json");
+    const data = isJson ? await response.json() : await response.text();
+    // @ts-expect-error because of json-beautify incorrect types
+    const formattedData = isJson ? beautify(data, null, 2, 120) : data;
 
-    return NextResponse.json(data, { status: response.status });
+    return NextResponse.json(formattedData, { status: response.status });
   } catch (error) {
     // обработать ошибки по таймауту, сервер не доступен и тп
     console.error("Error fetching data:", error);
