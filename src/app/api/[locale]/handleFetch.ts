@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { FetchOptions, HttpMethod } from "src/types";
 import { decodeFromBase64 } from "src/utils/utils";
 
@@ -45,10 +45,7 @@ export const handleFetch = async (
   }
 
   try {
-    const response = await fetch(url, options);
-    const data = response.ok ? await response.json() : await response.text();
-
-    return NextResponse.json(data, { status: response.status });
+    return await fetch(url, options);
   } catch (error) {
     // обработать ошибки по таймауту, сервер не доступен и тп
     console.error("Error fetching data:", error);

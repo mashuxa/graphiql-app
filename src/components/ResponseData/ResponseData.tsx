@@ -1,7 +1,6 @@
 "use client";
 
-import beautify from "json-beautify";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 
 interface ResponseDataProps {
@@ -10,9 +9,6 @@ interface ResponseDataProps {
 }
 
 const ResponseData: FC<ResponseDataProps> = ({ status, data }) => {
-  // @ts-expect-error because of json-beautify incorrect types
-  const formattedData = useMemo(() => beautify(data, null, 2, 120), [data]);
-
   return (
     <>
       <hr className="mt-8" />
@@ -22,7 +18,7 @@ const ResponseData: FC<ResponseDataProps> = ({ status, data }) => {
         Status: <span>{status}</span>
       </p>
       <p>Body:</p>
-      <pre className="overflow-auto">{formattedData}</pre>
+      <pre className="overflow-auto">{data}</pre>
     </>
   );
 };
