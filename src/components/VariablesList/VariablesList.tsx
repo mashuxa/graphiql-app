@@ -1,21 +1,17 @@
 "use client";
 
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
-import { useAppDispatch } from "src/store/hooks";
-import { RootState } from "src/store/store";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 import { setVariables } from "src/store/variablesSlice";
 import { ArgType, newItem, replaceUrlData } from "src/utils/headersUtils";
 
 const VariablesList: FC = () => {
   const dispatch = useAppDispatch();
-  const body = useSelector((state: RootState) => state.body.body);
-  const variables = useSelector(
-    (state: RootState) => state.variables.variables,
-  );
+  const body = useAppSelector((state) => state.body.body);
+  const variables = useAppSelector((state) => state.variables.variables);
 
   const handleAddVariable = (): void => {
     dispatch(setVariables([...variables, newItem()]));
@@ -38,7 +34,6 @@ const VariablesList: FC = () => {
     };
 
     dispatch(setVariables(newVariables));
-    console.log(variables);
   };
 
   const handleBlur = (): void => {

@@ -37,3 +37,8 @@ export type FetchOptions = {
   headers: Record<string, string>;
   body?: string;
 };
+
+export enum ContentType {
+  json = "application/json",
+  text = "text/plain",
+}
