@@ -3,6 +3,7 @@
 import { NextPage } from "next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import GraphiqlForm from "src/components/GraphiqlForm/GraphiqlForm";
+import { isFetchData } from "src/components/HistoryList/HistroryList.helper";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { fetchGraphqlData } from "src/fetch/fetchGraphqlData";
 
