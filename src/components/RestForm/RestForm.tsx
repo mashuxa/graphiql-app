@@ -6,6 +6,7 @@ import BodyEditor from "src/components/BodyEditor/BodyEditor";
 import Button from "src/components/Button/Button";
 import HeadersList from "src/components/HeadersList/HeadersList";
 import MethodSelector from "src/components/MethodSelector/MethodSelector";
+import ResponseData from "src/components/ResponseData/ResponseData";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import UrlInput from "src/components/UrlInput/UrlInput";
 import VariablesList from "../VariablesList/VariablesList";
@@ -64,11 +65,7 @@ const RestForm: FC = () => {
       <VariablesList />
 
       <SectionTitle>Response:</SectionTitle>
-      <p>
-        Status: <span>{response.status}</span>
-      </p>
-      <p>Body:</p>
-      <pre className="overflow-auto">{response.data}</pre>
+      <ResponseData status={response.status} data={response.data} />
     </form>
   );
 };

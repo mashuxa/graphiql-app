@@ -3,6 +3,7 @@
 import { NextPage } from "next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import GraphiqlForm from "src/components/GraphiqlForm/GraphiqlForm";
+import ResponseData from "src/components/ResponseData/ResponseData";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { fetchGraphqlData } from "src/fetch/fetchGraphqlData";
 
@@ -19,11 +20,7 @@ const Graphiql: NextPage<{
       <GraphiqlForm />
       <hr className="mt-8" />
       <SectionTitle>Response:</SectionTitle>
-      <p>
-        Status: <span>{status}</span>
-      </p>
-      <p>Body:</p>
-      <pre className="overflow-auto">{data}</pre>
+      <ResponseData status={status} data={data} />
     </div>
   );
 };
