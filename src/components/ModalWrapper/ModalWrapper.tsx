@@ -3,9 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, PropsWithChildren } from "react";
 
-const Layout: FC<PropsWithChildren<{ modal: React.ReactElement }>> = ({
-  children,
-}) => {
+const ModalWrapper: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
 
   return (
@@ -25,4 +23,4 @@ const Layout: FC<PropsWithChildren<{ modal: React.ReactElement }>> = ({
   );
 };
 
-export default Layout;
+export default ModalWrapper;
