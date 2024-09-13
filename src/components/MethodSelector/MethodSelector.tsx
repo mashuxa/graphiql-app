@@ -1,16 +1,19 @@
 "use client";
 
-import { ChangeEvent, FC, useEffect, useState } from "react";
-import { httpMethodList } from "src/types";
+import { ChangeEvent, FC, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import { setMethod } from "src/store/methodSlice";
+import { HttpMethod, httpMethodList } from "src/types";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 
 const MethodSelector: FC = () => {
-  const [value, setValue] = useState("");
+  const value = useAppSelector((state) => state.method.method);
+  const dispatch = useAppDispatch();
 
   const handleChange = ({
     currentTarget,
   }: ChangeEvent<HTMLSelectElement>): void => {
-    setValue(currentTarget.value);
+    dispatch(setMethod(currentTarget.value as HttpMethod));
     replaceUrlData(ArgType.method, currentTarget.value);
   };
 
@@ -18,7 +21,7 @@ const MethodSelector: FC = () => {
     const defaultValue = getUrlData().method;
 
     if (defaultValue) {
-      setValue(defaultValue);
+      dispatch(setMethod(defaultValue as HttpMethod));
     }
   }, []);
 

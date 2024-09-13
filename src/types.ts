@@ -31,3 +31,8 @@ export interface ResponseData {
   status: number;
   data: string;
 }
+
+export enum ContentType {
+  json = "application/json",
+  text = "text/plain",
+}

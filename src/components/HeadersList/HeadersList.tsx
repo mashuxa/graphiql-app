@@ -3,26 +3,36 @@
 import { FC, useEffect, useState } from "react";
 import Button from "src/components/Button/Button";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
-import { Header } from "src/components/HeadersList/types";
+import { methodsWithBody } from "src/fetch/fetch.types";
+import { useAppSelector } from "src/store/hooks";
+import { ContentType } from "src/types";
 import {
   getUrlHeadersFromSearchParams,
   newItem,
   updateUrlHeaders,
 } from "src/utils/headersUtils";
+import { Header } from "./types";
 
 const HeadersList: FC = () => {
   const [headers, setHeaders] = useState<Header[]>([]);
-  const addNewItem = (): void => setHeaders((prev) => [...prev, newItem()]);
-  const onRemove = (index: number): void =>
-    setHeaders((prev) => {
-      return prev.filter((_, i) => i !== index);
-    });
-  const onChange = (index: number, fieldName: string, value: string): void =>
-    setHeaders((prev) =>
-      prev.map((item, i) =>
+  const method = useAppSelector((state) => state.method.method);
+  const contentType = useAppSelector((state) => state.contentType.contentType);
+
+  const addNewItem = (): void => {
+    setHeaders([...headers, newItem()]);
+  };
+
+  const onRemove = (index: number): void => {
+    setHeaders(headers.filter((_, i) => i !== index));
+  };
+
+  const onChange = (index: number, fieldName: string, value: string): void => {
+    setHeaders(
+      headers.map((item, i) =>
         i === index ? { ...item, [fieldName]: value } : item,
       ),
     );
+  };
 
   useEffect(() => {
     const defaultHeaders = getUrlHeadersFromSearchParams();
@@ -35,6 +45,39 @@ const HeadersList: FC = () => {
   useEffect(() => {
     updateUrlHeaders(headers);
   }, [headers]);
+
+  useEffect(() => {
+    if (methodsWithBody.includes(method)) {
+      setHeaders((prevHeaders) => {
+        const contentTypeHeaderIndex = prevHeaders.findIndex(
+          (header) => header.key === "Content-Type",
+        );
+
+        if (contentTypeHeaderIndex !== -1) {
+          return prevHeaders.map((header, index) =>
+            index === contentTypeHeaderIndex
+              ? {
+                  ...header,
+                  value: ContentType[contentType as keyof typeof ContentType],
+                }
+              : header,
+          );
+        } else {
+          return [
+            ...prevHeaders,
+            newItem(
+              "Content-Type",
+              ContentType[contentType as keyof typeof ContentType],
+            ),
+          ];
+        }
+      });
+    } else {
+      setHeaders((prevHeaders) =>
+        prevHeaders.filter((header) => header.key !== "Content-Type"),
+      );
+    }
+  }, [method, contentType]);
 
   return (
     <div className="flex">

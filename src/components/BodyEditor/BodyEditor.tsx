@@ -1,11 +1,11 @@
 "use client";
 
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Switcher from "src/components/Switcher/Switcher";
 import { setBody } from "src/store/bodySlice";
-import { useAppDispatch } from "src/store/hooks";
-import { RootState } from "src/store/store";
+import { setContentType } from "src/store/contentTypeSlice";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import { ContentType } from "src/types";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 import {
   beautifyGraphql,
@@ -24,11 +24,6 @@ interface BodyEditorProps {
   type?: BodyEditorTypes;
 }
 
-export enum ContentType {
-  json = "json",
-  text = "text",
-}
-
 const validateFunctions = {
   rest: isJsonValid,
   graphql: isGraphqlValid,
@@ -39,19 +34,15 @@ const beautifyFunctions = {
   graphql: beautifyGraphql,
 };
 
-export const defaultContentType = ContentType.json;
-
 const BodyEditor: FC<BodyEditorProps> = ({
   readOnly = true,
   type = BodyEditorTypes.rest,
 }) => {
-  const [contentType, setContentType] = useState(defaultContentType);
+  const contentType = useAppSelector((state) => state.contentType.contentType);
   const [error, setError] = useState<string>("");
   const dispatch = useAppDispatch();
-  const body = useSelector((state: RootState) => state.body.body);
-  const variables = useSelector(
-    (state: RootState) => state.variables.variables,
-  );
+  const body = useAppSelector((state) => state.body.body);
+  const variables = useAppSelector((state) => state.variables.variables);
 
   const isBodyValid = (data?: string): boolean => {
     const validateFunction = validateFunctions[type];
@@ -79,15 +70,18 @@ const BodyEditor: FC<BodyEditorProps> = ({
   };
 
   const handleChangeType = (type: string): void => {
-    setContentType(type as ContentType);
+    dispatch(setContentType(type as ContentType));
   };
+
   const handleChangeBody = ({
     currentTarget,
   }: ChangeEvent<HTMLTextAreaElement>): void => {
     dispatch(setBody(currentTarget.value));
     isBodyValid(currentTarget.value);
   };
+
   const handleFocus = (): void => setError("");
+
   const handleBlur = (): void => {
     replaceUrlData(ArgType.body, body, variables);
   };
@@ -109,7 +103,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
             value={contentType}
             defaultValue={contentType}
             onChange={handleChangeType}
-            options={Object.values(ContentType)}
+            options={Object.keys(ContentType)}
           />
         ) : (
           <div></div>
@@ -133,7 +127,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
         onFocus={handleFocus}
         onChange={handleChangeBody}
         onBlur={handleBlur}
-        placeholder={`Enter ${type === "graphql" ? type : contentType.toString()}`}
+        placeholder={`Enter ${type === "graphql" ? type : contentType}`}
       />
 
       {error && (
