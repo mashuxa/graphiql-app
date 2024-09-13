@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import ResponseData from "src/components/ResponseData/ResponseData";
 import useFormAction from "src/hooks/useFormAction/useFormAction";
+import { setContentType } from "src/store/contentTypeSlice";
+import { useAppDispatch } from "src/store/hooks";
+import { setMethod } from "src/store/methodSlice";
+import { ContentType, HttpMethod } from "src/types";
 import BodyEditor, { BodyEditorTypes } from "../BodyEditor/BodyEditor";
 import Button from "../Button/Button";
 import DocumentExplorer from "../DocumentExplorer/DocumentExplorer";
@@ -29,6 +33,15 @@ const GraphiqlForm = (): JSX.Element => {
   const [isShowExplorer, setIsShowExplorer] = useState<string>("false");
   const [docData, setDocData] = useState<string>("");
   const { response, isLoading, handleSubmit } = useFormAction();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setMethod(HttpMethod.post));
+    dispatch(
+      setContentType(Object.keys(ContentType)[0] as typeof ContentType.json),
+    );
+  }, []);
+
   // TODO: add validation
 
   useEffect(() => {
