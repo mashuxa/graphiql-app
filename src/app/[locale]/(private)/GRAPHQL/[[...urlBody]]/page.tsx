@@ -13,7 +13,7 @@ const Graphiql: NextPage = () => {
     <>
       <H1Title>{t("title")}</H1Title>
       <div className="lg:flex">
-        <div className="lg:grow pb-8 lg:order-1">
+        <div className="grow pb-8 lg:order-1 overflow-x-auto">
           <GraphiqlForm />
         </div>
         <div className="lg:pr-4">
