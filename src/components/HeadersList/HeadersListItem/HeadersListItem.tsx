@@ -40,13 +40,13 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
     <fieldset className="flex group gap-2">
       <FormField
         className={groupClassName}
-        defaultValue={header.key}
+        value={header.key}
         onChange={handleChangeKey}
         {...(onBlur && { onBlur })}
       />
       <FormField
         className={groupClassName}
-        defaultValue={header.value}
+        value={header.value}
         onChange={handleChangeValue}
         {...(onBlur && { onBlur })}
       />

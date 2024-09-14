@@ -1,8 +1,12 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import ResponseData from "src/components/ResponseData/ResponseData";
 import useFormAction from "src/hooks/useFormAction/useFormAction";
+import { setContentType } from "src/store/contentTypeSlice";
+import { useAppDispatch } from "src/store/hooks";
+import { setMethod } from "src/store/methodSlice";
+import { ContentType, HttpMethod } from "src/types";
 import BodyEditor, { BodyEditorTypes } from "../BodyEditor/BodyEditor";
 import Button from "../Button/Button";
 import HeadersList from "../HeadersList/HeadersList";
@@ -11,6 +15,15 @@ import VariablesList from "../VariablesList/VariablesList";
 
 const GraphiqlForm: FC = () => {
   const { response, isLoading, handleSubmit } = useFormAction();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setMethod(HttpMethod.post));
+    dispatch(
+      setContentType(Object.keys(ContentType)[0] as typeof ContentType.json),
+    );
+  }, []);
 
   return (
     <>

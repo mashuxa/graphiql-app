@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { FetchOptions, HttpMethod } from "src/types";
 import { decodeFromBase64 } from "src/utils/utils";
 
-const methodsWithBody = [
+export const methodsWithBody = [
   HttpMethod.post,
   HttpMethod.put,
   HttpMethod.patch,
