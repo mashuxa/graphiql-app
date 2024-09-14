@@ -128,7 +128,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
         <textarea
           disabled={readOnly}
           name="body"
-          className={`w-full min-h-80 border p-4 rounded outline-none ${error && "border-error"}`}
+          className={`w-full min-h-80 border p-4 rounded outline-none shadow-inner bg-neutral-50 ${error && "border-error"}`}
           value={body}
           onFocus={handleFocus}
           onChange={handleChangeBody}

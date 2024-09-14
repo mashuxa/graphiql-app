@@ -44,7 +44,7 @@ const VariablesList: FC = () => {
     <>
       <SectionTitle>Variables:</SectionTitle>
       <div className="flex">
-        <div className="flex-grow pr-6">
+        <div className="flex-grow pr-6 space-y-2">
           {variables.map((variable, index) => (
             <HeadersListItem
               key={variable.id}

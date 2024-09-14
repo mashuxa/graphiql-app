@@ -36,7 +36,6 @@ const SdlUrlInput: FC<UrlInputProps> = () => {
     <FormField
       className="flex-grow"
       type="url"
-      inputClassName="border-none"
       value={value}
       name="sdlUrl"
       placeholder="Sdl Url"

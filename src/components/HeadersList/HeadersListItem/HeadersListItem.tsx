@@ -11,7 +11,8 @@ interface HeadersListItemProps {
   onBlur?: () => void;
 }
 
-const groupClassName = "flex-grow group-hover:bg-neutral-50";
+const groupClassName =
+  "flex-grow group-hover:bg-neutral-50 shadow-inner bg-neutral-50";
 
 const HeadersListItem: FC<HeadersListItemProps> = ({
   index,
@@ -36,7 +37,7 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
   );
 
   return (
-    <fieldset className="flex group">
+    <fieldset className="flex group gap-2">
       <FormField
         className={groupClassName}
         value={header.key}
