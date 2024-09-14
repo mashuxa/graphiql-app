@@ -3,8 +3,8 @@
 import { FC, useEffect, useState } from "react";
 import { methodsWithBody } from "src/app/api/[locale]/handleFetch";
 import Button from "src/components/Button/Button";
+import Details from "src/components/Details/Details";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
-import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { useAppSelector } from "src/store/hooks";
 import { ContentType } from "src/types";
 import {
@@ -81,9 +81,7 @@ const HeadersList: FC = () => {
   }, [method, contentType]);
 
   return (
-    <>
-      <SectionTitle>Headers:</SectionTitle>
-
+    <Details title="Headers">
       <div className="flex">
         <div className="flex-grow pr-6 space-y-2">
           {headers.map((header, index) => (
@@ -96,11 +94,15 @@ const HeadersList: FC = () => {
             />
           ))}
         </div>
-        <Button type="button" onClick={addNewItem} className="bg-neutral-50">
-          ➕
+        <Button
+          type="button"
+          onClick={addNewItem}
+          className="bg-neutral-50 text-secondary"
+        >
+          +
         </Button>
       </div>
-    </>
+    </Details>
   );
 };
 

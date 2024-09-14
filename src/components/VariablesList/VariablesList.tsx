@@ -2,8 +2,8 @@
 
 import { FC } from "react";
 import Button from "src/components/Button/Button";
+import Details from "src/components/Details/Details";
 import HeadersListItem from "src/components/HeadersList/HeadersListItem/HeadersListItem";
-import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { useAppDispatch, useAppSelector } from "src/store/hooks";
 import { setVariables } from "src/store/variablesSlice";
 import { ArgType, newItem, replaceUrlData } from "src/utils/headersUtils";
@@ -41,8 +41,7 @@ const VariablesList: FC = () => {
   };
 
   return (
-    <>
-      <SectionTitle>Variables:</SectionTitle>
+    <Details title="Variables">
       <div className="flex">
         <div className="flex-grow pr-6 space-y-2">
           {variables.map((variable, index) => (
@@ -59,12 +58,12 @@ const VariablesList: FC = () => {
         <Button
           type="button"
           onClick={handleAddVariable}
-          className="bg-neutral-50"
+          className="bg-neutral-50 text-secondary"
         >
-          ➕
+          +
         </Button>
       </div>
-    </>
+    </Details>
   );
 };
 

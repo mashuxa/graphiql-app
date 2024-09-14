@@ -51,11 +51,11 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
         {...(onBlur && { onBlur })}
       />
       <Button
-        className={`${groupClassName} flex-grow-0 transition opacity-30 hover:opacity-100`}
+        className={`${groupClassName} flex-grow-0 transition opacity-30 hover:opacity-100 hover:text-error text-md text-error`}
         onClick={handleRemove}
         type="button"
       >
-        ❌
+        🗙
       </Button>
     </fieldset>
   );
