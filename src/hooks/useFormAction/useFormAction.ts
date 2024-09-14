@@ -28,7 +28,6 @@ const useFormAction = (): UseFormActionReturnType => {
       const data = await response.json();
 
       setResponse({ status: response.status, data });
-      console.log("History");
       dispatch(
         addHistoryItem({ url: window.location.href, executed: Date.now() }),
       );
