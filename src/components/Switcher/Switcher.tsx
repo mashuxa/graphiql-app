@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, FC } from "react";
+import { ContentType } from "src/types";
 
 interface SwitcherProps {
   name: string;
@@ -19,8 +20,15 @@ const Switcher: FC<SwitcherProps> = ({
   options,
   defaultValue,
 }) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void =>
-    onChange(event.currentTarget.value);
+  const handleChange = ({
+    currentTarget,
+  }: ChangeEvent<HTMLInputElement>): void => {
+    const newValue: ContentType = ContentType.text.includes(currentTarget.value)
+      ? ContentType.text
+      : ContentType.json;
+
+    onChange(newValue);
+  };
 
   return (
     <div className="flex py-1 items-center">
