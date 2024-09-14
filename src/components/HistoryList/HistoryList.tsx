@@ -25,7 +25,7 @@ const HistoryList: FC = () => {
 
   return (
     <div className="flex">
-      <div className="flex-grow pr-6">
+      <div data-testid="history-list" className="flex-grow pr-6">
         {history.length === 0 ? (
           <div className="text-center">
             You haven&apos;t executed any requests yet. It&apos;s empty here.
