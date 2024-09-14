@@ -42,3 +42,8 @@ export enum ContentType {
   json = "application/json",
   text = "text/plain",
 }
+
+export interface HistoryItem {
+  url: string;
+  executed: number;
+}
