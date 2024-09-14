@@ -1,4 +1,4 @@
-import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
+import { Action, configureStore, Store } from "@reduxjs/toolkit";
 
 import { RequestData } from "src/types";
 import bodyReducer, { BodyState } from "./bodySlice";
@@ -7,13 +7,17 @@ import methodReducer, { MethodState } from "./methodSlice";
 import requestDataSlice from "./requestDataSlice";
 import variablesReducer, { VariablesState } from "./variablesSlice";
 
-export const makeStore = (): EnhancedStore<{
-  requestData: RequestData;
-  body: BodyState;
-  variables: VariablesState;
-  method: MethodState;
-  contentType: ContentTypeState;
-}> => {
+export const makeStore = (): Store<
+  {
+    requestData: RequestData;
+    body: BodyState;
+    variables: VariablesState;
+    method: MethodState;
+    contentType: ContentTypeState;
+  },
+  Action,
+  object
+> => {
   return configureStore({
     reducer: {
       requestData: requestDataSlice,
