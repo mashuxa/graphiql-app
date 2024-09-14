@@ -5,7 +5,10 @@ import AuthRedirect from "src/components/AuthRedirect/AuthRedirect";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div data-testid="main" className="w-full max-w-screen-2xl px-4 py-8">
+    <div
+      data-testid="main"
+      className="w-full max-w-screen-2xl px-4 py-8 text-center"
+    >
       <AuthRedirect />
       {children}
     </div>
