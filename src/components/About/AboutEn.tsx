@@ -137,6 +137,30 @@ const AboutEn: FC = () => {
             developing modern web applications and business solutions.
           </p>
         </section>
+        <div className="info">
+          <h2
+            className="_widget-title_1q6pu_2 _medium_1q6pu_18 _asterisk_1q6pu_48"
+            data-testid="widget-title"
+          >
+            About RS School
+          </h2>
+          <p
+            className="_paragraph_vtk71_1 _large-font-size_vtk71_11"
+            data-testid="paragraph"
+          >
+            No matter your age, professional employment, or place of residence.
+          </p>
+          <p
+            className="_paragraph_vtk71_1 _medium-font-size_vtk71_6"
+            data-testid="paragraph"
+          >
+            RS School offers a unique learning experience as a free,
+            community-based online education initiative. The RS School has been
+            run by the Rolling Scopes community since 2013. Today, over 600
+            developer-volunteers from various countries and companies assist as
+            mentors. We believe in important ideas that guide our mission.
+          </p>
+        </div>
       </details>
     </article>
   );
