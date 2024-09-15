@@ -21,7 +21,7 @@ const GraphiqlForm: FC = () => {
   useEffect(() => {
     dispatch(setMethod(HttpMethod.post));
     dispatch(
-      setContentType(Object.keys(ContentType)[0] as typeof ContentType.json),
+      setContentType(ContentType.json),
     );
   }, []);
 
