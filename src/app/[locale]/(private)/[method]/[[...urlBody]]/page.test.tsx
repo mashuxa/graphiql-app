@@ -1,13 +1,59 @@
-// import Rest from "src/app/[locale]/(private)/[method]/[[...urlBody]]/page";
-// import { render, screen } from "src/test/test-utils";
-describe("Rest Client", () => {
-  test("should render page", () => {
-    // render(<Rest />);
+import { render, screen } from "@testing-library/react";
+import { useTranslations } from "next-intl";
+import { notFound } from "next/navigation";
+import { FC, ReactNode } from "react";
+import Rest from "./page";
 
-    // const logo = screen.getByTestId("rest-main");
+jest.mock("next-intl", () => ({
+  useTranslations: jest.fn(),
+}));
 
-    // expect(logo).toBeInTheDocument();
+jest.mock("next/navigation", () => ({
+  notFound: jest.fn(),
+}));
 
-    expect(true).toBe(true);
+jest.mock("src/components/RestForm/RestForm", () => {
+  const MockRestForm: FC<{ children?: ReactNode }> = ({ children }) => (
+    <div>{children || "RestForm"}</div>
+  );
+
+  return MockRestForm;
+});
+jest.mock("src/components/H1Title/H1Title", () => {
+  const MockH1Title: FC<{ children: ReactNode }> = ({ children }) => (
+    <h1>{children}</h1>
+  );
+
+  return MockH1Title;
+});
+
+describe("Rest Page", () => {
+  beforeEach(() => {
+    (useTranslations as jest.Mock).mockReturnValue((key: string) => key);
+  });
+
+  it("should render the Rest page with title and form", () => {
+    const params = { method: "GET" };
+
+    render(<Rest params={params} />);
+
+    expect(screen.getByText("title")).toBeInTheDocument();
+    expect(screen.getByText("RestForm")).toBeInTheDocument();
+  });
+
+  it("should call notFound if method is not in httpMethodList", () => {
+    const params = { method: "INVALID_METHOD" };
+
+    render(<Rest params={params} />);
+
+    expect(notFound).toHaveBeenCalled();
+  });
+
+  it("should not call notFound if method is in httpMethodList", () => {
+    const params = { method: "GET" };
+
+    render(<Rest params={params} />);
+
+    expect(notFound).not.toHaveBeenCalled();
   });
 });
