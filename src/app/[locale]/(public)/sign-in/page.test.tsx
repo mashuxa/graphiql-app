@@ -1,13 +1,10 @@
+import SignIn from "src/app/[locale]/(public)/sign-in/page";
 import { render, screen } from "src/test/test-utils";
 
-import SignIn from "src/app/[locale]/(public)/sign-in/page";
-
-describe("Rest", () => {
+describe("Sign-In Page", () => {
   test("should render page", () => {
     render(<SignIn />);
 
-    const logo = screen.getByTestId("sign-in-main");
-
-    expect(logo).toBeInTheDocument();
+    expect(screen.getByTestId("sign-in")).toBeInTheDocument();
   });
 });
