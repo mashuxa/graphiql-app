@@ -1,7 +1,6 @@
 import { parse } from "graphql";
+import { format } from "graphql-formatter";
 import beautify from "json-beautify";
-import { format } from "prettier";
-import plugin from "prettier/plugins/graphql";
 
 export const isJsonValid = (data?: string): boolean => {
   if (!data) {
@@ -36,6 +35,6 @@ export const beautifyJson = (data?: string): string => {
   return beautify(JSON.parse(data), null, 2, 120);
 };
 
-export const beautifyGraphql = async (data?: string): Promise<string> => {
-  return await format(data || "", { parser: "graphql", plugins: [plugin] });
+export const beautifyGraphql = (data?: string): string => {
+  return data ? format(data) : "";
 };
