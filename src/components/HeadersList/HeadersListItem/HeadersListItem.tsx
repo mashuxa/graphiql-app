@@ -57,7 +57,6 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
         className={`${groupClassName} flex-grow-0 transition opacity-30 hover:opacity-100 hover:text-error text-md text-error`}
         onClick={handleRemove}
         type="button"
-        // teststrint
         data-testid="removeHeaderButton"
       >
         ✖
