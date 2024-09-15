@@ -32,10 +32,7 @@ export const isGraphqlValid = (data?: string): boolean => {
 };
 
 export const beautifyJson = (data?: string): string => {
-  // if (isJsonValid(data)) {
-  // todo: fix null type error
   // @ts-expect-error because of json-beautify incorrect types
-
   return beautify(JSON.parse(data), null, 2, 120);
 };
 

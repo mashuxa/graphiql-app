@@ -43,6 +43,9 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
         value={header.key}
         onChange={handleChangeKey}
         {...(onBlur && { onBlur })}
+        type="text"
+        pattern="^[A-Za-z0-9\-]*$"
+        title="Only letters, numbers, and hyphens are allowed"
       />
       <FormField
         className={groupClassName}
