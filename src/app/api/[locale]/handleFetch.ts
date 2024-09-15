@@ -31,12 +31,6 @@ export const handleFetch = async (
   const url = decodeFromBase64(urlBase64);
   const body = decodeFromBase64(bodyBase64);
   const headers: Record<string, string> = Object.fromEntries(searchParams);
-
-  // @todo: json || text
-  if (methodsWithBody.includes(method) && body) {
-    headers["Content-Type"] = "application/json";
-  }
-
   const options: FetchOptions = { method, headers };
 
   if (isGraphql) {

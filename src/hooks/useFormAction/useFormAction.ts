@@ -6,7 +6,6 @@ import { ResponseData as ResponseDataType } from "src/types";
 interface UseFormActionReturnType {
   response: ResponseDataType | null;
   isLoading: boolean;
-  // handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
   handleSubmit: () => void;
 }
 
@@ -14,10 +13,7 @@ const useFormAction = (): UseFormActionReturnType => {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<ResponseDataType | null>(null);
   const dispatch = useDispatch();
-  const handleSubmit = async () // event: FormEvent<HTMLFormElement>,
-  : Promise<void> => {
-    // event.preventDefault();
-
+  const handleSubmit = async (): Promise<void> => {
     try {
       setIsLoading(true);
 
