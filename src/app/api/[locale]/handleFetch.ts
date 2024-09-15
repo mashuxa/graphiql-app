@@ -48,8 +48,8 @@ export const handleFetch = async (
     const formattedData = isJson ? beautify(data, null, 2, 120) : data;
 
     return NextResponse.json(formattedData, { status: response.status });
-  } catch (error) {
-    console.error(error);
+  } catch {
+    // console.error(error);
     throw new Error("Connection error");
   }
 };

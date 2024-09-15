@@ -22,6 +22,7 @@ const HistoryList: FC = () => {
     const historyFromLocalStorage = getHistoryFromLocalStorage();
 
     dispatch(setHistory({ history: historyFromLocalStorage }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

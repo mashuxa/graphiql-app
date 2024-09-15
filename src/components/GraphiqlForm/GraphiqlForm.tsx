@@ -31,6 +31,7 @@ const GraphiqlForm: FC = () => {
     dispatch(
       setContentType(Object.keys(ContentType)[0] as typeof ContentType.json),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const validate = async (data: {

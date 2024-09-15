@@ -95,6 +95,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
     if (!body && defaultValue) {
       dispatch(setBody(defaultValue));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
