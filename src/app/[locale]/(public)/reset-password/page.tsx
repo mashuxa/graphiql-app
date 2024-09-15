@@ -35,7 +35,7 @@ const ResetPassword: NextPage = () => {
     <>
       <h1 className="text-2xl font-bold mb-6 text-center">{t("title")}</h1>
       <form
-        data-testid="sign-in-main"
+        data-testid="reset"
         className="space-y-4"
         onSubmit={formik.handleSubmit}
       >

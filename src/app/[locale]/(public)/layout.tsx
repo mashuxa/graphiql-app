@@ -13,7 +13,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   useAuthRedirect(true, routes.home);
 
   return (
-    <div className="bg-white p-8">
+    <div data-testid="public-layout" className="bg-white p-8">
       {children}
       <Button className="mx-auto mt-6" onClick={signInWithGoogle}>
         {t("signInWithGoogle")}

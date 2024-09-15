@@ -14,7 +14,7 @@ import {
   NotificationType,
 } from "src/providers/NotificationProvider/types";
 
-const TIMEOUT_MS = 5000;
+export const TIMEOUT_MS = 5000;
 
 const NotificationContext = createContext<NotificationContextType | null>(null);
 
