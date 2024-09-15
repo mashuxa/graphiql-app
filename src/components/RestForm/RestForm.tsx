@@ -74,11 +74,14 @@ const RestForm: FC = () => {
         {errors.method && (
           <div className={errorMessageClass}>{errors.method.message}</div>
         )}
-        <UrlInput />
+        <UrlInput data-testid="rest-url-input" />
         {errors.url && (
           <div className={errorMessageClass}>{errors.url.message}</div>
         )}
-        <Button className="border-none bg-primary px-8 hover:text-secondary">
+        <Button
+          data-testid="rest-send"
+          className="border-none bg-primary px-8 hover:text-secondary"
+        >
           SEND
         </Button>
       </div>
