@@ -3,11 +3,13 @@
 import { useFormik } from "formik";
 import { NextPage } from "next";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import Button from "src/components/Button/Button";
 import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
 import { resetPassword } from "src/firebase/auth/auth";
+import { Link } from "src/i18n.config";
+import { useNotification } from "src/providers/NotificationProvider/NotificationProvider";
+import { NotificationType } from "src/providers/NotificationProvider/types";
 import { resetPasswordSchema } from "src/validation/validationSchemas";
 
 const errorMessageClass = "text-red-500 text-sm";
@@ -15,11 +17,27 @@ const errorMessageClass = "text-red-500 text-sm";
 const ResetPassword: NextPage = () => {
   const t = useTranslations("ResetPassword");
 
+  const { showNotification } = useNotification();
+
   const handleSubmit = async (
     values: Record<string, string>,
   ): Promise<void> => {
     if (values.email) {
-      await resetPassword(values.email);
+      // await resetPassword(values.email);
+      try {
+        await resetPassword(values.email);
+        // showNotification(
+        //   NotificationType.Default,
+        //   t("successTitle"),
+        //   t("successMessage"),
+        // );
+      } catch (error) {
+        if (error instanceof Error) {
+          showNotification(NotificationType.Error, "Auth error", error.message);
+        } else {
+          showNotification(NotificationType.Error, "Auth error", String(error));
+        }
+      }
     }
   };
 

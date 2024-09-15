@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Router } from "next/router";
 import { Provider } from "react-redux";
+import { NotificationProvider } from "src/providers/NotificationProvider/NotificationProvider";
 import { makeStore } from "src/store/store";
 import { MOCK_HISTORY_ITEM } from "../../test/sharedData";
 import GraphiqlForm from "../GraphiqlForm/GraphiqlForm";
@@ -9,7 +10,7 @@ import ModalWrapper from "./ModalWrapper";
 
 const mockRouterback = jest.fn();
 
-jest.mock("next/navigation", (): { useRouter: () => Partial<Router> } => ({
+jest.mock("src/i18n.config", (): { useRouter: () => Partial<Router> } => ({
   useRouter(): Partial<Router> {
     return {
       pathname: "",
@@ -25,9 +26,11 @@ describe("Modal Wrapper", () => {
     localStorage.setItem("History", JSON.stringify([MOCK_HISTORY_ITEM]));
     render(
       <Provider store={mockStore}>
-        <ModalWrapper>
-          <GraphiqlForm />
-        </ModalWrapper>
+        <NotificationProvider>
+          <ModalWrapper>
+            <GraphiqlForm />
+          </ModalWrapper>
+        </NotificationProvider>
       </Provider>,
     );
     const form = await waitFor(() => screen.getByTestId("graphiql-form"));
@@ -41,9 +44,11 @@ describe("Modal Wrapper", () => {
     localStorage.setItem("History", JSON.stringify([MOCK_HISTORY_ITEM]));
     render(
       <Provider store={mockStore}>
-        <ModalWrapper>
-          <RestForm />
-        </ModalWrapper>
+        <NotificationProvider>
+          <ModalWrapper>
+            <RestForm />
+          </ModalWrapper>
+        </NotificationProvider>
       </Provider>,
     );
 
@@ -59,9 +64,11 @@ describe("Modal Wrapper", () => {
 
     render(
       <Provider store={mockStore}>
-        <ModalWrapper>
-          <RestForm />
-        </ModalWrapper>
+        <NotificationProvider>
+          <ModalWrapper>
+            <RestForm />
+          </ModalWrapper>
+        </NotificationProvider>
       </Provider>,
     );
     const closeButton = await waitFor(() =>

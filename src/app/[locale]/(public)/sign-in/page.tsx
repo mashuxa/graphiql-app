@@ -8,6 +8,8 @@ import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
 import { signIn } from "src/firebase/auth/auth";
 import { Link } from "src/i18n.config";
+import { useNotification } from "src/providers/NotificationProvider/NotificationProvider";
+import { NotificationType } from "src/providers/NotificationProvider/types";
 import { loginSchema } from "src/validation/validationSchemas";
 
 const errorMessageClass = "text-red-500 text-sm";
@@ -15,11 +17,22 @@ const errorMessageClass = "text-red-500 text-sm";
 const SignIn: NextPage = () => {
   const t = useTranslations("SignIn");
 
+  const { showNotification } = useNotification();
+
   const handleSubmit = async (
     values: Record<string, string>,
   ): Promise<void> => {
     if (values.email && values.password) {
-      await signIn(values.email, values.password);
+      // await signIn(values.email, values.password);
+      try {
+        await signIn(values.email, values.password);
+      } catch (error) {
+        if (error instanceof Error) {
+          showNotification(NotificationType.Error, "Auth error", error.message);
+        } else {
+          showNotification(NotificationType.Error, "Auth error", String(error));
+        }
+      }
     }
   };
 

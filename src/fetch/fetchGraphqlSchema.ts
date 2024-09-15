@@ -29,8 +29,9 @@ export const fetchGraphqlSchema = async (
 
     printedSchema.schema = printSchema(schema);
     printedSchema.status = response.status;
-  } catch (error) {
-    console.error(error);
+  } catch {
+    // console.error(error);
+    throw new Error("Connection error");
   }
 
   return printedSchema;

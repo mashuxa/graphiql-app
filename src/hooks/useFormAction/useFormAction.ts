@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNotification } from "src/providers/NotificationProvider/NotificationProvider";
+import { NotificationType } from "src/providers/NotificationProvider/types";
 import { addHistoryItem } from "src/store/historySlice";
 import { ResponseData as ResponseDataType } from "src/types";
 
@@ -13,6 +15,8 @@ const useFormAction = (): UseFormActionReturnType => {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<ResponseDataType | null>(null);
   const dispatch = useDispatch();
+  const { showNotification } = useNotification();
+
   const handleSubmit = async (): Promise<void> => {
     try {
       setIsLoading(true);
@@ -27,10 +31,9 @@ const useFormAction = (): UseFormActionReturnType => {
       dispatch(
         addHistoryItem({ url: window.location.href, executed: Date.now() }),
       );
-    } catch (e) {
-      console.error(e);
-      // @todo: add notification
-      alert("Connection failed.");
+    } catch {
+      // console.error(error);
+      showNotification(NotificationType.Error, "Error", "Server Unavailable");
     } finally {
       setIsLoading(false);
     }

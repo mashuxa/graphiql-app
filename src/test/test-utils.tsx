@@ -3,11 +3,12 @@ import { NextIntlClientProvider } from "next-intl";
 import { PropsWithChildren } from "react";
 import { Locale } from "src/i18n.config";
 import messageEn from "src/messages/en.json";
+import { NotificationProvider } from "src/providers/NotificationProvider/NotificationProvider";
 
 const AllProviders = ({ children }: PropsWithChildren): JSX.Element => {
   return (
     <NextIntlClientProvider locale={Locale.EN} messages={messageEn}>
-      {children}
+      <NotificationProvider>{children}</NotificationProvider>
     </NextIntlClientProvider>
   );
 };

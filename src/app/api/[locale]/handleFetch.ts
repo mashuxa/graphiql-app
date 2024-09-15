@@ -49,8 +49,7 @@ export const handleFetch = async (
 
     return NextResponse.json(formattedData, { status: response.status });
   } catch (error) {
-    // обработать ошибки по таймауту, сервер не доступен и тп
-    console.error("Error fetching data:", error);
-    throw error;
+    console.error(error);
+    throw new Error("Connection error");
   }
 };
