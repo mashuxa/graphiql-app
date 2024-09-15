@@ -23,6 +23,7 @@ const MethodSelector: FC = () => {
     if (defaultValue) {
       dispatch(setMethod(defaultValue as HttpMethod));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
