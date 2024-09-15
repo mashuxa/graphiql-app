@@ -5,7 +5,14 @@ export const headerKeyRegex = /^[a-zA-Z0-9-]+$/;
 export const headerValueRegex = /^[^\x00-\x1F\x7F]*$/;
 
 export const loginSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup
+    .string()
+    .email("Invalid email")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+      "Domain must contain at least two characters after the dot",
+    )
+    .required("Email is required"),
   password: yup
     .string()
     .min(8, "Password must be at least 8 characters long")
@@ -20,7 +27,14 @@ export const loginSchema = yup.object().shape({
 
 export const registrationSchema = yup.object().shape({
   name: yup.string().required("Username is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup
+    .string()
+    .email("Invalid email")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+      "Domain must contain at least two characters after the dot",
+    )
+    .required("Email is required"),
   password: yup
     .string()
     .min(8, "Password must be at least 8 characters long")
