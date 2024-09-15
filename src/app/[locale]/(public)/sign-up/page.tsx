@@ -16,7 +16,7 @@ const errorMessageClass = "text-red-500 text-sm";
 
 const SignUp: NextPage = () => {
   const t = useTranslations("SignUp");
-
+  const errors = useTranslations("Errors");
   const { showNotification } = useNotification();
 
   const handleSubmit = async (
@@ -28,15 +28,10 @@ const SignUp: NextPage = () => {
       values.name &&
       values.password === values.repeatPassword
     ) {
-      // await signUp(values.name, values.email, values.password);
       try {
         await signUp(values.name, values.email, values.password);
-      } catch (error) {
-        if (error instanceof Error) {
-          showNotification(NotificationType.Error, "Auth error", error.message);
-        } else {
-          showNotification(NotificationType.Error, "Auth error", String(error));
-        }
+      } catch (code) {
+        showNotification(NotificationType.Error, "Auth error", errors(code));
       }
     }
   };

@@ -84,9 +84,9 @@ describe("NotificationProvider", () => {
     expect(screen.queryByTestId("notification")).not.toBeInTheDocument();
   });
 
-  // it("should throw error on render without provider", () => {
-  //   expect(() => render(<TestComponent />)).toThrow(
-  //     "NotificationContext Error: useNotification must be used within a NotificationProvider",
-  //   );
-  // });
+  it("should throw error on render without provider", () => {
+    expect(() => render(<TestComponent />)).toThrow(
+      "NotificationContext Error: useNotification must be used within a NotificationProvider",
+    );
+  });
 });
