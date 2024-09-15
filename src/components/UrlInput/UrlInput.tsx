@@ -4,7 +4,6 @@ import { ChangeEvent, FC, useEffect, useState } from "react";
 import FormField from "src/components/FormField/FormField";
 import { ArgType, getUrlData, replaceUrlData } from "src/utils/headersUtils";
 
-// todo: add support cyrillic symbols
 interface UrlInputProps {
   isUpdateUrl?: boolean;
 }

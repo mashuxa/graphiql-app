@@ -34,7 +34,6 @@ jest.mock("next/navigation", (): { useRouter: () => Partial<Router> } => ({
   useRouter(): Partial<Router> {
     return {
       pathname: "",
-      //  back: mockRouterback,
     };
   },
 }));
@@ -66,7 +65,6 @@ describe("Graphiql component", () => {
       target: { value: GRAPHQL_REQUEST_BODY },
     });
 
-    console.log(bodyTeaxtArea.textContent);
     fireEvent.blur(bodyTeaxtArea);
 
     expect(window.location.pathname).toEqual(EXPECTED_PATHNAME);

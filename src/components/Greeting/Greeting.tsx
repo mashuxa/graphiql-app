@@ -24,7 +24,7 @@ const Greeting: FC = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+      <h2 className="text-2xl font-semibold mb-4 mt-8 text-center">
         {user
           ? t("auth-greeting", { username: user.name })
           : t("unauth-greeting")}
