@@ -3,10 +3,9 @@ import { Router } from "next/router";
 import { Provider } from "react-redux";
 import { NotificationProvider } from "src/providers/NotificationProvider/NotificationProvider";
 import { makeStore } from "src/store/store";
+import { URL } from "src/test/sharedData";
 import { render } from "src/test/test-utils";
 import GraphiqlForm from "./GraphiqlForm";
-
-const URL = "https://countries.trevorblades.com";
 
 const GRAPHQL_REQUEST_BODY = `query GetCountry {
     country(code: "BR") {
