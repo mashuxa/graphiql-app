@@ -141,6 +141,31 @@ const AboutRu: FC = () => {
             </p>
           </section>
         </section>
+        <div className="info">
+          <h2
+            className="_widget-title_1q6pu_2 _medium_1q6pu_18 _asterisk_1q6pu_48"
+            data-testid="widget-title"
+          >
+            О RS School
+          </h2>
+          <p
+            className="_paragraph_vtk71_1 _large-font-size_vtk71_11"
+            data-testid="paragraph"
+          >
+            Неважно, сколько вам лет, где вы работаете или где живёте.
+          </p>
+          <p
+            className="_paragraph_vtk71_1 _medium-font-size_vtk71_6"
+            data-testid="paragraph"
+          >
+            RS School предлагает уникальный образовательный опыт в формате
+            бесплатного, основанного на сообществе онлайн-обучения. RS School
+            проводится сообществом Rolling Scopes с 2013 года. Сегодня более 600
+            разработчиков-добровольцев из разных стран и компаний помогают в
+            качестве наставников. Мы верим в важные идеи, которые определяют
+            нашу миссию.
+          </p>
+        </div>
       </details>
     </article>
   );
