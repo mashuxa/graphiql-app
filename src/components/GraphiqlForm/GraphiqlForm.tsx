@@ -62,16 +62,13 @@ const GraphiqlForm: FC = () => {
     event: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault();
-
     const formData = new FormData(event.currentTarget);
-
     const url = formData.get("url");
     const body = formData.get("body");
 
     if (!(await validate({ url, body }))) {
       return;
     }
-
     handleSubmit();
   };
 
@@ -83,22 +80,31 @@ const GraphiqlForm: FC = () => {
         onSubmit={onSubmit}
       >
         <div className="flex border">
-          <UrlInput />
+          <UrlInput data-testid="graphiql-url-input" />
           {errors.url && (
             <div className={errorMessageClass}>{errors.url.message}</div>
           )}
-          <Button className="border-none bg-primary px-8 hover:text-secondary">
+          <Button
+            data-testid="graphiql-send"
+            className="border-none bg-primary px-8 hover:text-secondary"
+          >
             SEND
           </Button>
         </div>
         <HeadersList />
-        <BodyEditor readOnly={false} type={BodyEditorTypes.graphql} />
+        <BodyEditor
+          readOnly={false}
+          type={BodyEditorTypes.graphql}
+          data-testid="graphiql-body"
+        />
         {errors.body && (
           <div className={errorMessageClass}>{errors.body.message}</div>
         )}
         <VariablesList />
       </form>
-      {response && <ResponseData {...response} />}
+      {response && (
+        <ResponseData {...response} data-testid="graphiql-response" />
+      )}
     </>
   );
 };

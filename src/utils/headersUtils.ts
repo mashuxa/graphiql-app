@@ -60,8 +60,8 @@ export const getUrlData = (): UrlData => {
     window.location.pathname.split("/");
 
   return {
-    locale,
-    method,
+    locale: locale || "en",
+    method: method || "GRAPHQL",
     url: decodeFromBase64(urlBase64),
     body: decodeFromBase64(bodyBase64),
   };

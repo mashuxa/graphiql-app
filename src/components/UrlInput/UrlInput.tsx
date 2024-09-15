@@ -9,7 +9,10 @@ interface UrlInputProps {
   isUpdateUrl?: boolean;
 }
 
-const UrlInput: FC<UrlInputProps> = ({ isUpdateUrl = true }: UrlInputProps) => {
+const UrlInput: FC<UrlInputProps> = ({
+  isUpdateUrl = true,
+  ...props
+}: UrlInputProps) => {
   const [value, setValue] = useState("");
 
   const handleChange = ({
@@ -39,6 +42,7 @@ const UrlInput: FC<UrlInputProps> = ({ isUpdateUrl = true }: UrlInputProps) => {
       name="url"
       placeholder="Url"
       onChange={handleChange}
+      {...props}
     />
   );
 };

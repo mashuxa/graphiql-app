@@ -40,6 +40,7 @@ const beautifyFunctions = {
 const BodyEditor: FC<BodyEditorProps> = ({
   readOnly = true,
   type = BodyEditorTypes.rest,
+  ...props
 }) => {
   const contentType = useAppSelector((state) => state.contentType.contentType);
   const [error, setError] = useState<string>("");
@@ -134,6 +135,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
           onChange={handleChangeBody}
           onBlur={handleBlur}
           placeholder={`Enter ${type === "graphql" ? type : contentType}`}
+          {...props}
         />
 
         {error && (
