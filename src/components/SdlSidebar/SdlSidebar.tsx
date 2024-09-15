@@ -55,10 +55,14 @@ const SdlSidebar: FC = () => {
   }, [fetchData]);
 
   return (
-    <div className={`lg:max-w-80 ${isLoading ? "animate-blink" : ""}`}>
+    <div
+      data-testid="sdl-sidebar"
+      className={`lg:max-w-80 ${isLoading ? "animate-blink" : ""}`}
+    >
       <form onSubmit={handleSubmit} className="flex">
         <SdlUrlInput />
         <Button
+          data-testid="sdl-btn"
           className="bg-primary hover:text-secondary border-0 w-12"
           title="fetch sdl"
         >

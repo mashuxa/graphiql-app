@@ -6,7 +6,10 @@ interface PreloaderProps {
 
 const Preloader: FC<PreloaderProps> = ({ className }) => {
   return (
-    <div className={`flex items-center justify-center ${className}`}>
+    <div
+      data-testid="preloader"
+      className={`flex items-center justify-center ${className}`}
+    >
       <div className="flex space-x-2">
         <div className="w-4 h-4 bg-primary rounded-full animate-bounce"></div>
         <div className="w-4 h-4 bg-primary rounded-full animate-bounce delay-150"></div>

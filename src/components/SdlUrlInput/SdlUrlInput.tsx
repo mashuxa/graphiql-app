@@ -24,6 +24,7 @@ const SdlUrlInput: FC<UrlInputProps> = () => {
 
   return (
     <FormField
+      data-testid="sdl-input"
       className="flex-grow"
       type="url"
       value={value}
