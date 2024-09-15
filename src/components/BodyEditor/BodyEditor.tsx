@@ -40,7 +40,6 @@ const beautifyFunctions = {
 const BodyEditor: FC<BodyEditorProps> = ({
   readOnly = true,
   type = BodyEditorTypes.rest,
-  ...props
 }) => {
   const contentType = useAppSelector((state) => state.contentType.contentType);
   const [error, setError] = useState<string>("");
@@ -135,11 +134,16 @@ const BodyEditor: FC<BodyEditorProps> = ({
           onChange={handleChangeBody}
           onBlur={handleBlur}
           placeholder={`Enter ${type === "graphql" ? type : contentType}`}
-          {...props}
+          data-testid="graphiql-body"
         />
 
         {error && (
-          <div className="absolute left-0 bottom-4 text-error">{error}</div>
+          <div
+            data-testid="body-errors"
+            className="absolute left-0 bottom-4 text-error"
+          >
+            {error}
+          </div>
         )}
       </div>
     </>

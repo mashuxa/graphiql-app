@@ -92,11 +92,7 @@ const GraphiqlForm: FC = () => {
           </Button>
         </div>
         <HeadersList />
-        <BodyEditor
-          readOnly={false}
-          type={BodyEditorTypes.graphql}
-          data-testid="graphiql-body"
-        />
+        <BodyEditor readOnly={false} type={BodyEditorTypes.graphql} />
         {errors.body && (
           <div className={errorMessageClass}>{errors.body.message}</div>
         )}
