@@ -1,6 +1,7 @@
+import { Store, UnknownAction } from "@reduxjs/toolkit";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import configureMockStore from "redux-mock-store";
+import configureMockStore, { MockStoreEnhanced } from "redux-mock-store";
 import { setVariables } from "src/store/variablesSlice";
 import { ArgType, replaceUrlData } from "src/utils/headersUtils";
 import VariablesList from "./VariablesList";
@@ -17,7 +18,9 @@ const initialState = {
 };
 
 describe("VariablesList", () => {
-  let store;
+  let store:
+    | MockStoreEnhanced<unknown, object>
+    | Store<unknown, UnknownAction, unknown>;
 
   beforeEach(() => {
     store = mockStore(initialState);
