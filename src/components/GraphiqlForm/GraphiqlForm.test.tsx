@@ -22,7 +22,7 @@ const EXPECTED_PATHNAME =
   "/en/GRAPHQL/aHR0cHM6Ly9jb3VudHJpZXMudHJldm9yYmxhZGVzLmNvbQ==/";
 
 describe("Graphiql component", () => {
-  it("Send button send graphql request", async () => {
+  it("Url in browser is updated after changes url or body", async () => {
     const mockStore = makeStore();
 
     render(
