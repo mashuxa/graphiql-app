@@ -6,7 +6,7 @@ export interface ContentTypeState {
 }
 
 const initialState = {
-  contentType: ContentType.json,
+  contentType: Object.keys(ContentType)[0],
 };
 
 const contentTypeSlice = createSlice({
