@@ -16,27 +16,22 @@ const errorMessageClass = "text-red-500 text-sm";
 
 const ResetPassword: NextPage = () => {
   const t = useTranslations("ResetPassword");
-
+  const errors = useTranslations("Errors");
   const { showNotification } = useNotification();
 
   const handleSubmit = async (
     values: Record<string, string>,
   ): Promise<void> => {
     if (values.email) {
-      // await resetPassword(values.email);
       try {
         await resetPassword(values.email);
-        // showNotification(
-        //   NotificationType.Default,
-        //   t("successTitle"),
-        //   t("successMessage"),
-        // );
-      } catch (error) {
-        if (error instanceof Error) {
-          showNotification(NotificationType.Error, "Auth error", error.message);
-        } else {
-          showNotification(NotificationType.Error, "Auth error", String(error));
-        }
+        showNotification(
+          NotificationType.Default,
+          "Success",
+          "Reset link sent to email",
+        );
+      } catch (code) {
+        showNotification(NotificationType.Error, "Auth error", errors(code));
       }
     }
   };

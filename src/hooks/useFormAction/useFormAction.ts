@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNotification } from "src/providers/NotificationProvider/NotificationProvider";
@@ -16,6 +17,7 @@ const useFormAction = (): UseFormActionReturnType => {
   const [response, setResponse] = useState<ResponseDataType | null>(null);
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
+  const errors = useTranslations("Errors");
 
   const handleSubmit = async (): Promise<void> => {
     try {
@@ -32,8 +34,11 @@ const useFormAction = (): UseFormActionReturnType => {
         addHistoryItem({ url: window.location.href, executed: Date.now() }),
       );
     } catch {
-      // console.error(error);
-      showNotification(NotificationType.Error, "Error", "Server Unavailable");
+      showNotification(
+        NotificationType.Error,
+        "Error",
+        errors("serverUnavailable"),
+      );
     } finally {
       setIsLoading(false);
     }

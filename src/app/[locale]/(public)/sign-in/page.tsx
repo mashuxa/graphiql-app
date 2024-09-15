@@ -16,22 +16,17 @@ const errorMessageClass = "text-red-500 text-sm";
 
 const SignIn: NextPage = () => {
   const t = useTranslations("SignIn");
-
+  const errors = useTranslations("Errors");
   const { showNotification } = useNotification();
 
   const handleSubmit = async (
     values: Record<string, string>,
   ): Promise<void> => {
     if (values.email && values.password) {
-      // await signIn(values.email, values.password);
       try {
         await signIn(values.email, values.password);
-      } catch (error) {
-        if (error instanceof Error) {
-          showNotification(NotificationType.Error, "Auth error", error.message);
-        } else {
-          showNotification(NotificationType.Error, "Auth error", String(error));
-        }
+      } catch (code) {
+        showNotification(NotificationType.Error, "Auth error", errors(code));
       }
     }
   };

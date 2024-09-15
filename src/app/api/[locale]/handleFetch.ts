@@ -49,7 +49,6 @@ export const handleFetch = async (
 
     return NextResponse.json(formattedData, { status: response.status });
   } catch {
-    // console.error(error);
     throw new Error("Connection error");
   }
 };

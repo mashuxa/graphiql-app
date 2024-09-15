@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { FC, PropsWithChildren } from "react";
 import { useRouter } from "src/i18n.config";
-// import { useRouter } from "next/navigation";
 
 const ModalWrapper: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
