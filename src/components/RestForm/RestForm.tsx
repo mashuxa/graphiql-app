@@ -64,7 +64,11 @@ const RestForm: FC = () => {
   };
 
   return (
-    <form className={isLoading ? "animate-blink" : ""} onSubmit={onSubmit}>
+    <form
+      data-testid="rest-form"
+      className={isLoading ? "animate-blink" : ""}
+      onSubmit={onSubmit}
+    >
       <div className="flex border">
         <MethodSelector />
         {errors.method && (

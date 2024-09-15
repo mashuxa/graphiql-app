@@ -77,7 +77,11 @@ const GraphiqlForm: FC = () => {
 
   return (
     <>
-      <form className={isLoading ? "animate-blink" : ""} onSubmit={onSubmit}>
+      <form
+        data-testid="graphiql-form"
+        className={isLoading ? "animate-blink" : ""}
+        onSubmit={onSubmit}
+      >
         <div className="flex border">
           <UrlInput />
           {errors.url && (
