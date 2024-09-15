@@ -44,6 +44,7 @@ const HistoryList: FC = () => {
 
             return (
               <div
+                data-testid="history-list-item"
                 key={index}
                 className="my-3 p-2 bg-neutral-100 rounded-md text-blue-500 underline"
               >
