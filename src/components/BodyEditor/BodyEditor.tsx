@@ -115,7 +115,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
             <div></div>
           )}
 
-          {contentType === ContentType.json && (
+          {contentType === Object.keys(ContentType)[0] && (
             <button
               type="button"
               className="right-0 top-3 p-2 bg-green-500 text-white rounded"
