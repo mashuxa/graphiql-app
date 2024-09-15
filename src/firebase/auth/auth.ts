@@ -82,7 +82,7 @@ export const fetchUserData = withErrorHandling(
     if (userData) {
       return userData;
     } else {
-      throw new Error("User not found");
+      throw "userNotFound";
     }
   },
 );

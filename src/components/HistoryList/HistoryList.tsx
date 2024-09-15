@@ -1,8 +1,9 @@
 "use client";
-import Link from "next/link";
+
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { routes } from "src/constants";
+import { Link } from "src/i18n.config";
 import { setHistory } from "src/store/historySlice";
 import { RootState } from "src/store/store";
 import { decodeUrl, getHistoryFromLocalStorage } from "src/utils/utils";

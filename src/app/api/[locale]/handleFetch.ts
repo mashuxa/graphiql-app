@@ -48,9 +48,7 @@ export const handleFetch = async (
     const formattedData = isJson ? beautify(data, null, 2, 120) : data;
 
     return NextResponse.json(formattedData, { status: response.status });
-  } catch (error) {
-    // обработать ошибки по таймауту, сервер не доступен и тп
-    console.error("Error fetching data:", error);
-    throw error;
+  } catch {
+    throw new Error("Connection error");
   }
 };

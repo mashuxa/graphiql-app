@@ -41,7 +41,7 @@ const NotificationModal: FC<NotificationProps> = ({
         onClick={onClose}
         className="absolute top-0 right-0 p-2 text-white hover:text-gray-200"
       >
-        🗙
+        ✖
       </button>
     </div>
   );

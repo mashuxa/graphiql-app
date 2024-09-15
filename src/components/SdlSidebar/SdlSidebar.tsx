@@ -1,13 +1,18 @@
+import { useTranslations } from "next-intl";
 import { FC, FormEvent, useCallback, useEffect, useState } from "react";
 import Button from "src/components/Button/Button";
 import SdlUrlInput from "src/components/SdlUrlInput/SdlUrlInput";
 import SectionTitle from "src/components/SectionTitle/SectionTitle";
 import { fetchGraphqlSchema } from "src/fetch/fetchGraphqlSchema";
+import { useNotification } from "src/providers/NotificationProvider/NotificationProvider";
+import { NotificationType } from "src/providers/NotificationProvider/types";
 import { getUrlData } from "src/utils/headersUtils";
 
 const SdlSidebar: FC = () => {
   const [docData, setDocData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const errors = useTranslations("Errors");
+  const { showNotification } = useNotification();
 
   const fetchData = useCallback(async (sdlUrl: string): Promise<void> => {
     if (!sdlUrl) {
@@ -17,17 +22,15 @@ const SdlSidebar: FC = () => {
     try {
       setIsLoading(true);
 
-      const { status, schema } = await fetchGraphqlSchema(sdlUrl);
+      const { schema } = await fetchGraphqlSchema(sdlUrl);
 
-      if (status === 200) {
-        setDocData(schema);
-      } else {
-        // show notification error 'Incorrect SDL URL'
-      }
-    } catch (e) {
-      //todo: add notification
-      console.error(e);
-      //error handler
+      setDocData(schema);
+    } catch {
+      showNotification(
+        NotificationType.Error,
+        "Error",
+        errors("errorFetchGraphqlSchema"),
+      );
     } finally {
       setIsLoading(false);
     }

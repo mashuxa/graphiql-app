@@ -58,7 +58,7 @@ const HeadersListItem: FC<HeadersListItemProps> = ({
         onClick={handleRemove}
         type="button"
       >
-        🗙
+        ✖
       </Button>
     </fieldset>
   );

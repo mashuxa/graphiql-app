@@ -8,12 +8,16 @@ import FormField from "src/components/FormField/FormField";
 import { routes } from "src/constants";
 import { signUp } from "src/firebase/auth/auth";
 import { Link } from "src/i18n.config";
+import { useNotification } from "src/providers/NotificationProvider/NotificationProvider";
+import { NotificationType } from "src/providers/NotificationProvider/types";
 import { registrationSchema } from "src/validation/validationSchemas";
 
 const errorMessageClass = "text-red-500 text-sm";
 
 const SignUp: NextPage = () => {
   const t = useTranslations("SignUp");
+  const errors = useTranslations("Errors");
+  const { showNotification } = useNotification();
 
   const handleSubmit = async (
     values: Record<string, string>,
@@ -24,7 +28,11 @@ const SignUp: NextPage = () => {
       values.name &&
       values.password === values.repeatPassword
     ) {
-      await signUp(values.name, values.email, values.password);
+      try {
+        await signUp(values.name, values.email, values.password);
+      } catch (code) {
+        showNotification(NotificationType.Error, "Auth error", errors(code));
+      }
     }
   };
 
