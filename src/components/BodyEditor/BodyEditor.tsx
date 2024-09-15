@@ -135,10 +135,16 @@ const BodyEditor: FC<BodyEditorProps> = ({
           onChange={handleChangeBody}
           onBlur={handleBlur}
           placeholder={`Enter ${type === "graphql" ? type : contentType}`}
+          data-testid="graphiql-body"
         />
 
         {error && (
-          <div className="absolute left-0 bottom-4 text-error">{error}</div>
+          <div
+            data-testid="body-errors"
+            className="absolute left-0 bottom-4 text-error"
+          >
+            {error}
+          </div>
         )}
       </div>
     </>
