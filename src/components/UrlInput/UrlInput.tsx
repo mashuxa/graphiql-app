@@ -17,6 +17,7 @@ const UrlInput: FC<UrlInputProps> = ({
   const handleChange = ({
     currentTarget,
   }: ChangeEvent<HTMLInputElement>): void => {
+    if (currentTarget.value.match(/[а-яА-Я]/)) return;
     setValue(currentTarget.value);
 
     if (isUpdateUrl) {
