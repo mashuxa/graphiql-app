@@ -12,7 +12,6 @@ import { registrationSchema } from "src/validation/validationSchemas";
 
 const errorMessageClass = "text-red-500 text-sm";
 
-// @todo: add validation
 const SignUp: NextPage = () => {
   const t = useTranslations("SignUp");
 
@@ -22,7 +21,7 @@ const SignUp: NextPage = () => {
     if (
       values.email &&
       values.password &&
-      name &&
+      values.name &&
       values.password === values.repeatPassword
     ) {
       await signUp(values.name, values.email, values.password);
@@ -40,29 +39,12 @@ const SignUp: NextPage = () => {
     onSubmit: handleSubmit,
   });
 
-  // const handleSubmit = async (
-  //   event: FormEvent<HTMLFormElement>,
-  // ): Promise<void> => {
-  //   event.preventDefault();
-
-  //   const formData = new FormData(event.currentTarget);
-  //   const name = formData.get("name") as string;
-  //   const email = formData.get("email") as string;
-  //   const password = formData.get("password") as string;
-  //   const repeatPassword = formData.get("repeatPassword") as string;
-
-  //   if (email && password && name && password === repeatPassword) {
-  //     await signUp(name, email, password);
-  //   }
-  // };
-
   return (
     <>
       <h1 className="text-2xl font-bold mb-6 text-center">{t("title")}</h1>
       <form
         data-testid="sign-in-main"
         className="space-y-4"
-        // onSubmit={handleSubmit}
         onSubmit={formik.handleSubmit}
       >
         <FormField
@@ -107,7 +89,7 @@ const SignUp: NextPage = () => {
             {formik.errors.repeatPassword}
           </div>
         ) : null}
-        <Button>{t("submit")}</Button>
+        <Button type="submit">{t("submit")}</Button>
       </form>
       <div className="pt-8 text-center">
         <Link href={routes.signIn}>{t("signIn")}</Link>

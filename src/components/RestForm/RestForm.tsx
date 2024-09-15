@@ -12,9 +12,7 @@ import useFormAction from "src/hooks/useFormAction/useFormAction";
 import { restSchema } from "src/validation/validationSchemas";
 import * as yup from "yup";
 
-type FormDataValues = {
-  [key: string]: FormDataEntryValue | null;
-};
+const errorMessageClass = "text-red-500 text-sm";
 
 const RestForm: FC = () => {
   const { response, isLoading, handleSubmit } = useFormAction();
@@ -22,7 +20,9 @@ const RestForm: FC = () => {
     {},
   );
 
-  const validate = async (data: FormDataValues): Promise<boolean> => {
+  const validate = async (data: {
+    [key: string]: FormDataEntryValue | null;
+  }): Promise<boolean> => {
     try {
       await restSchema.validate(data, { abortEarly: false });
       setErrors({});
@@ -49,14 +49,12 @@ const RestForm: FC = () => {
     event: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
+
     const method = formData.get("method");
     const url = formData.get("url");
-    // const headers
     const body = formData.get("body");
-    // const variables
-
-    console.log(method, url, body);
 
     if (!(await validate({ method, url, body }))) {
       return;
@@ -69,16 +67,22 @@ const RestForm: FC = () => {
     <form className={isLoading ? "animate-blink" : ""} onSubmit={onSubmit}>
       <div className="flex border">
         <MethodSelector />
-        {errors.method && <div>{errors.method.message}</div>}
+        {errors.method && (
+          <div className={errorMessageClass}>{errors.method.message}</div>
+        )}
         <UrlInput />
-        {errors.url && <div>{errors.url.message}</div>}
+        {errors.url && (
+          <div className={errorMessageClass}>{errors.url.message}</div>
+        )}
         <Button className="border-none bg-primary px-8 hover:text-secondary">
           SEND
         </Button>
       </div>
       <HeadersList />
       <BodyEditor readOnly={false} />
-      {errors.body && <div>{errors.body.message}</div>}
+      {errors.body && (
+        <div className={errorMessageClass}>{errors.body.message}</div>
+      )}
       <VariablesList />
       {response && <ResponseData {...response} />}
     </form>

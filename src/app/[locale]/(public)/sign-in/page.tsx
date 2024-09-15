@@ -12,7 +12,6 @@ import { loginSchema } from "src/validation/validationSchemas";
 
 const errorMessageClass = "text-red-500 text-sm";
 
-// @todo: add validation
 const SignIn: NextPage = () => {
   const t = useTranslations("SignIn");
 
@@ -33,27 +32,12 @@ const SignIn: NextPage = () => {
     onSubmit: handleSubmit,
   });
 
-  // const handleSubmit = async (
-  //   event: FormEvent<HTMLFormElement>,
-  // ): Promise<void> => {
-  //   event.preventDefault();
-
-  //   const formData = new FormData(event.currentTarget);
-  //   const email = formData.get("email") as string;
-  //   const password = formData.get("password") as string;
-
-  //   if (email && password) {
-  //     await signIn(email, password);
-  //   }
-  // };
-
   return (
     <>
       <h1 className="text-2xl font-bold mb-6 text-center">{t("title")}</h1>
       <form
         data-testid="sign-in-main"
         className="space-y-4"
-        // onSubmit={handleSubmit}
         onSubmit={formik.handleSubmit}
       >
         <FormField

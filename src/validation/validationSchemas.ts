@@ -51,6 +51,17 @@ export const registrationSchema = yup.object().shape({
     .required("Confirm Password is required"),
 });
 
+export const resetPasswordSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid email")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+      "Domain must contain at least two characters after the dot",
+    )
+    .required("Email is required"),
+});
+
 export const restSchema = yup.object().shape({
   method: yup
     .string()
@@ -85,4 +96,9 @@ export const restSchema = yup.object().shape({
   //       value: yup.string().required("Variable value is required"),
   //     }),
   //   ),
+});
+
+export const graphqlSchema = yup.object().shape({
+  url: yup.string().url("Invalid URL").required("URL is required"),
+  body: yup.string().required("Body is required"),
 });
