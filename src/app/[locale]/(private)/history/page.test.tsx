@@ -1,15 +1,28 @@
-// import { render, screen } from "src/test/test-utils";
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { NotificationProvider } from "src/providers/NotificationProvider/NotificationProvider";
+import { makeStore } from "src/store/store";
+import History from "./page";
 
-// import History from "src/app/[locale]/(private)/history/page";
+jest.mock("src/components/HistoryList/HistoryList", () => {
+  const MockHistoryList: React.FC = () => <div>HistoryList</div>;
 
-describe("History", () => {
-  test("should render page", () => {
-    // render(<History />);
+  return MockHistoryList;
+});
 
-    // const logo = screen.getByTestId("history-main");
+describe("History Page", () => {
+  it("should render the History page with HistoryList component", () => {
+    const mockStore = makeStore();
 
-    // expect(logo).toBeInTheDocument();
+    render(
+      <NotificationProvider>
+        <Provider store={mockStore}>
+          <History />
+        </Provider>
+      </NotificationProvider>,
+    );
 
-    expect(true).toBe(true);
+    expect(screen.getByTestId("history-main")).toBeInTheDocument();
+    expect(screen.getByText("HistoryList")).toBeInTheDocument();
   });
 });
