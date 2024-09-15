@@ -22,3 +22,10 @@ jest.mock("src/i18n.config", () => ({
   usePathname: jest.fn(),
   useRouter: jest.fn(),
 }));
+
+jest.mock("src/firebase/auth/auth", () => ({
+  auth: {
+    onAuthStateChanged: jest.fn(),
+  },
+  fetchUserData: jest.fn(),
+}));
