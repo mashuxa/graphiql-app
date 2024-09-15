@@ -1,0 +1,83 @@
+{
+  "LocaleSwitcher": {
+    "en": "English",
+    "ru": "Russian"
+  },
+  "AuthButton": {
+    "signOut": "Sign Out",
+    "signIn": "Sign In"
+  },
+  "Greeting": {
+    "auth-greeting": "Welcome Back, {username}!",
+    "unauth-greeting": "Welcome!",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "restClient": "REST client",
+    "graphiqlClient": "GraphiQL client",
+    "history": "History"
+  },
+  "GraphiQL": {
+    "title": "GraphiQL client"
+  },
+  "History": {
+    "title": "History"
+  },
+  "RestClient": {
+    "title": "Rest client"
+  },
+  "ResetPassword": {
+    "title": "Reset password",
+    "email": "Email",
+    "submit": "Reset",
+    "signIn": "Sign In"
+  },
+  "SignIn": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "resetPassword": "Reset password",
+    "signUp": "Sign Up"
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "repeatPassword": "Repeat password",
+    "submit": "Sign Up",
+    "signIn": "Sign In"
+  },
+  "publicLayout": {
+    "signInWithGoogle": "Sign In with Google"
+  },
+  "Errors": {
+    "default": "Unknown error occurred",
+    "userNotFound": "User not found",
+    "serverUnavailable": "Server unavailable",
+    "errorFetchGraphqlSchema": "Unable to load SDL schema",
+    "auth/email-already-in-use": "This email is already in use. Please try another one.",
+    "auth/invalid-email": "The email address is not valid. Please enter a valid email address.",
+    "auth/operation-not-allowed": "This operation is not allowed. Please contact support.",
+    "auth/weak-password": "The password is too weak. Please choose a stronger password.",
+    "auth/user-disabled": "This user account has been disabled. Please contact support.",
+    "auth/user-not-found": "No user found with this email. Please check your credentials.",
+    "auth/wrong-password": "The password is incorrect. Please try again.",
+    "auth/network-request-failed": "Network error occurred. Please check your internet connection and try again.",
+    "auth/cancelled-popup-request": "Sign In with social network cancelled.",
+    "auth/popup-closed-by-user": "Sign In with social network cancelled.",
+    "permission-denied": "You do not have permission to access this resource.",
+    "unavailable": "The service is temporarily unavailable. Please try again later.",
+    "not-found": "The requested document was not found.",
+    "aborted": "The operation was aborted due to a conflict. Please try again.",
+    "deadline-exceeded": "The operation took too long to complete. Please try again.",
+    "already-exists": "The document already exists. Please check your data.",
+    "cancelled": "The operation was cancelled.",
+    "invalid-argument": "The provided arguments are invalid. Please check your inputs.",
+    "resource-exhausted": "Resource limit has been exceeded. Please try again later.",
+    "internal": "An internal server error occurred. Please try again later.",
+    "failed-precondition": "The operation could not be performed due to failed preconditions.",
+    "out-of-range": "The input is out of the allowed range. Please adjust your values.",
+    "unauthenticated": "You are not authenticated. Please log in and try again."
+  }
+}
