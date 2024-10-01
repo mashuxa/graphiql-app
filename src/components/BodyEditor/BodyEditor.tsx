@@ -92,7 +92,7 @@ const BodyEditor: FC<BodyEditorProps> = ({
   useEffect(() => {
     const defaultValue = getUrlData().body;
 
-    if (!body && defaultValue) {
+    if (defaultValue) {
       dispatch(setBody(defaultValue));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
