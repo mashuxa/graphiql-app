@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { NotificationProvider } from "src/providers/NotificationProvider/NotificationProvider";
-import { makeStore } from "src/store/store";
+import { useTranslations } from "next-intl";
 import History from "./page";
+
+jest.mock("next-intl", () => ({
+  useTranslations: jest.fn(),
+}));
 
 jest.mock("src/components/HistoryList/HistoryList", () => {
   const MockHistoryList: React.FC = () => <div>HistoryList</div>;
@@ -11,16 +13,12 @@ jest.mock("src/components/HistoryList/HistoryList", () => {
 });
 
 describe("History Page", () => {
-  it("should render the History page with HistoryList component", () => {
-    const mockStore = makeStore();
+  beforeEach(() => {
+    (useTranslations as jest.Mock).mockReturnValue((key: string) => key);
+  });
 
-    render(
-      <NotificationProvider>
-        <Provider store={mockStore}>
-          <History />
-        </Provider>
-      </NotificationProvider>,
-    );
+  it("should render the History page with HistoryList component", () => {
+    render(<History />);
 
     expect(screen.getByTestId("history-main")).toBeInTheDocument();
     expect(screen.getByText("HistoryList")).toBeInTheDocument();
